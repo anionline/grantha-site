@@ -4,55 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grantha</title>
-<meta name="description" content="ग्रन्थ — a knot, a tying together.">
+<meta name="description" content="Grantha — ग्रन्थ, Sanskrit for a knot: the string that bound palm-leaf manuscripts into a book.">
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Open Graph -->
 <meta property="og:title" content="Grantha">
 <meta property="og:description" content="ग्रन्थ — a knot, a tying together.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://grantha.ai">
 
-<!-- Theme & favicon -->
-<meta name="theme-color" content="#0A1428">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230A1428'/%3E%3Ctext x='50' y='78' font-family='Noto Sans Sinhala, sans-serif' font-size='86' font-weight='700' fill='%23E5195E' text-anchor='middle'%3Eග%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f3ebdd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10131c" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Crect width='72' height='72' fill='%23b82a14'/%3E%3Crect x='20.114' width='6.572' height='72' fill='%23f3ebdd'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&family=Noto+Sans+Sinhala:wght@700&family=Noto+Serif+Devanagari:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&family=Noto+Sans+JP:wght@400;600&family=IBM+Plex+Mono:wght@400&family=Noto+Sans+Devanagari:wght@400&display=swap" rel="stylesheet">
 
 <style>
+  /* Grantha brand book v1004_1 — Washi (light) is the primary theme, Ink (dark) follows the system setting. */
   :root {
-    --hibiscus: #E5195E;
-    --ocean: #0A1428;
-    --cream: #FAF7F2;
+    --ink-000: #f3ebdd;   /* ground: kinari cloth */
+    --ink-100: #eae1d0;
+    --ink-200: #d6cbb7;   /* the only hairline color */
+    --shiro-000: #151821; /* primary text: sumi */
+    --shiro-100: #5c5a52;
+    --shiro-200: #7a766c; /* 20px and above only */
+    --aka: #b82a14;       /* one red per page */
+    --kin: #6e5729;
+    --fuji: #5b3f8c;
 
-    --muted: rgba(250, 247, 242, 0.5);
-    --soft: rgba(250, 247, 242, 0.35);
-    --hairline: rgba(250, 247, 242, 0.1);
+    --display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+    --sans: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    --deva: "Noto Sans Devanagari", var(--sans);
 
-    --font-display: 'Quicksand', sans-serif;
-    --font-body: 'Lora', Georgia, serif;
-    --font-sinhala: 'Noto Sans Sinhala', sans-serif;
-    --font-devanagari: 'Noto Serif Devanagari', 'Lora', serif;
+    --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+    --space-5: 48px; --space-6: 64px; --space-7: 128px;
+    --gutter: clamp(24px, 6.67vw, 128px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink-000: #10131c; --ink-100: #171b27; --ink-200: #272d3c;
+      --shiro-000: #f3ebdd; --shiro-100: #a8a9a3; --shiro-200: #6e7079;
+      --aka: #d9381e; --kin: #c6a664; --fuji: #b99be0;
+    }
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html, body {
-    background: var(--ocean);
-    color: var(--cream);
-    min-height: 100vh;
-    min-height: 100dvh;
-  }
-
+  html, body { background: var(--ink-000); color: var(--shiro-000); }
   body {
-    font-family: var(--font-display);
-    font-size: 16px;
+    font-family: var(--sans);
+    font-size: 18px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
 
   .page {
@@ -60,298 +67,156 @@
     min-height: 100dvh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    padding: 32px 48px;
+    padding: var(--space-6) var(--gutter);
+    gap: var(--space-6);
   }
 
-  /* ============== HEADER ============== */
+  /* Logo — rebuilt from the brand files; the band takes the ground color. */
+  .logo { display: block; height: 32px; width: auto; overflow: visible; }
+  .lg-seal { fill: var(--aka); }
+  .lg-band { fill: var(--ink-000); }
+  .lg-word { fill: var(--shiro-000); }
+
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 11px;
-    letter-spacing: 0.18em;
+  }
+  .status {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-  }
-
-  .stealth-indicator {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .stealth-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--hibiscus);
-    box-shadow: 0 0 0 0 rgba(229, 25, 94, 0.6);
-    animation: pulse 2.4s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      box-shadow: 0 0 0 0 rgba(229, 25, 94, 0.5);
-      opacity: 1;
-    }
-    50% {
-      box-shadow: 0 0 0 8px rgba(229, 25, 94, 0);
-      opacity: 0.7;
-    }
-  }
-
-  .corner {
+    color: var(--shiro-100);
     font-variant-numeric: tabular-nums;
   }
 
-  /* ============== MAIN ============== */
+  /* Main — weighted left, space does the work. */
   main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 64px 0;
+    align-self: center;
+    max-width: 1180px;
+    padding-bottom: var(--space-5);
   }
 
-  /* Lockup — stacked, the brand's centered application */
-  .lockup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 72px;
-    opacity: 0;
-    animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s forwards;
+  .rule {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--aka);
+    margin-bottom: var(--space-3);
   }
 
-  .mark {
-    font-family: var(--font-sinhala);
-    font-weight: 700;
-    font-size: clamp(120px, 18vw, 200px);
-    line-height: 1;
-    color: var(--hibiscus);
-    animation: breathe 6s ease-in-out infinite;
-    transform-origin: center;
-  }
-
-  @keyframes breathe {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.015); }
-  }
-
-  .wordmark {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(28px, 4vw, 44px);
-    line-height: 1;
-    letter-spacing: 0.04em;
-    color: var(--cream);
-    padding-left: 0.04em; /* optical offset matching tracking */
-  }
-
-  /* Lockup caption — Sanskrit identifier under the lockup, per brand lockup-caption pattern */
-  .lockup-caption {
-    margin-top: 18px;
-    font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+  .kicker {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--kin);
     display: flex;
     align-items: baseline;
-    gap: 10px;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
   }
-
-  .lockup-caption .dot {
-    opacity: 0.5;
-    font-size: 14px;
-    line-height: 1;
-  }
-
-  .lockup-caption .devanagari {
-    font-family: var(--font-devanagari);
-    font-size: 14px;
-    font-weight: 500;
+  .kicker .deva {
+    font-family: var(--deva);
+    font-weight: 400;
+    font-size: 18px;
     letter-spacing: 0;
     text-transform: none;
-    color: var(--muted);
-    line-height: 1;
   }
 
-  /* Tagline — Quicksand Bold Cream + Lora Italic Hibiscus */
-  .tagline {
-    font-size: clamp(28px, 4.4vw, 52px);
-    line-height: 1.2;
-    margin-bottom: 72px;
-    max-width: 14ch;
-    opacity: 0;
-    animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s forwards;
+  h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(44px, 7vw, 96px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    max-width: 13ch;
+  }
+  h1 .soft { color: var(--shiro-100); display: block; }
+
+  .lede {
+    margin-top: var(--space-5);
+    max-width: 34em;
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.6;
+    color: var(--shiro-100);
   }
 
-  .tagline .first {
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: var(--cream);
-    letter-spacing: -0.01em;
-    display: block;
-  }
-
-  .tagline .second {
-    font-family: var(--font-body);
-    font-style: italic;
-    color: var(--hibiscus);
-    font-weight: 400;
-    display: block;
-  }
-
-  /* Three meanings — dictionary entry, three columns */
+  /* Three meanings — a ledger: one hairline above each, numbers in gold mono. */
   .meanings {
     list-style: none;
+    margin-top: var(--space-6);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px 64px;
-    max-width: 700px;
-    width: 100%;
-    text-align: left;
-    opacity: 0;
-    animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s forwards;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-6);
   }
-
   .meanings li {
-    padding-top: 22px;
-    border-top: 1px solid var(--hairline);
+    border-top: 1px solid var(--ink-200);
+    padding-top: var(--space-3);
   }
-
-  .meanings .num {
-    font-family: var(--font-display);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--hibiscus);
+  .num {
     display: block;
-    margin-bottom: 8px;
-  }
-
-  .meanings .meaning-title {
-    font-family: var(--font-display);
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--cream);
-    display: block;
-    margin-bottom: 12px;
-    letter-spacing: -0.005em;
-    line-height: 1.3;
-  }
-
-  .meanings .meaning-body {
-    font-family: var(--font-body);
-    font-style: italic;
+    font-family: var(--mono);
     font-size: 15px;
+    color: var(--kin);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: var(--space-2);
+  }
+  .meaning-title {
+    display: block;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-1);
+  }
+  .translit { font-family: var(--deva); }
+  .meaning-body {
+    font-size: 16px;
     line-height: 1.65;
-    color: rgba(250, 247, 242, 0.65);
+    color: var(--shiro-100);
   }
 
-  /* ============== FOOTER ============== */
   footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-display);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--soft);
-    font-weight: 500;
+    align-items: baseline;
+    gap: var(--space-3);
+    border-top: 1px solid var(--ink-200);
+    padding-top: var(--space-3);
+    font-size: 14px;
+    color: var(--shiro-100);
   }
-
-  footer .left, footer .right {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-
-  .footer-email {
-    color: var(--soft);
+  footer a {
+    color: var(--shiro-100);
     text-decoration: none;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-family: var(--mono);
+    font-size: 14px;
+    border-bottom: 1px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
   }
+  footer a:hover, footer a:focus-visible { color: var(--shiro-000); border-bottom-color: var(--shiro-000); }
+  footer a:focus-visible { outline: 2px solid var(--shiro-000); outline-offset: 4px; }
 
-  .footer-email:hover {
-    color: var(--hibiscus);
+  /* Entrance — one quiet rise. */
+  .rise { opacity: 0; transform: translateY(12px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .2s; } .d3 { animation-delay: .35s; } .d4 { animation-delay: .5s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (max-width: 860px) {
+    .meanings { grid-template-columns: 1fr; gap: var(--space-4); max-width: 34em; }
   }
-
-  /* ============== ENTRANCE ============== */
-  @keyframes rise {
-    0% {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @media (max-width: 560px) {
+    .page { padding: var(--space-4) var(--gutter); gap: var(--space-5); }
+    .logo { height: 26px; }
+    .kicker { letter-spacing: 3px; }
+    footer { flex-direction: column; gap: var(--space-1); }
   }
-
-  header, footer {
-    opacity: 0;
-    animation: fadeIn 1.4s ease 0.3s forwards;
-  }
-
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
-
-  /* ============== RESPONSIVE ============== */
-  @media (max-width: 820px) {
-    .meanings {
-      grid-template-columns: 1fr;
-      gap: 24px;
-      max-width: 440px;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .page {
-      padding: 24px 24px;
-    }
-    header {
-      font-size: 10px;
-    }
-    .lockup { margin-bottom: 56px; gap: 10px; }
-    .tagline { margin-bottom: 56px; }
-    footer {
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-    }
-    footer .left, footer .right {
-      gap: 16px;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .page { padding: 20px 20px; }
-    header .corner span:not(:first-child) { display: none; }
-    footer .left span:not(:first-child),
-    footer .right span:not(:first-child) { display: none; }
-  }
-
-  /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-    .mark { animation: none; }
-    .stealth-dot { animation: none; }
+    .rise { animation: none; opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -359,61 +224,41 @@
 
 <div class="page">
 
-  <header>
-    <div class="stealth-indicator">
-      <span class="stealth-dot" aria-hidden="true"></span>
-      <span>In stealth</span>
-    </div>
-    <div class="corner">
-      <span>2026</span>
-    </div>
+  <header class="rise d1">
+    <svg class="logo" role="img" aria-label="Grantha" xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 435 80"><rect x="0" y="0" width="72" height="72" class="lg-seal"></rect><rect x="20.114" y="0" width="6.572" height="72" class="lg-band"></rect><path transform="translate(85.952,72) scale(0.048322,-0.048322)" d="M748.6 -20Q553.9 -20 407.6 73.9Q261.3 167.9 179.9 339.8Q98.6 511.6 98.6 744Q98.6 978.0 180.1 1150.0Q261.6 1322.0 405.9 1416.0Q550.3 1510 739.3 1510Q861.3 1510 962.8 1471.6Q1064.3 1433.3 1141.3 1365.6Q1218.3 1298.0 1267.9 1210.3Q1317.6 1122.6 1336 1024H1195.9Q1175.6 1098.6 1136.4 1163.4Q1097.3 1228.3 1039.3 1277.6Q981.3 1326.9 906.3 1354.8Q831.3 1382.6 739.3 1382.6Q594.3 1382.6 479.0 1306.9Q363.6 1231.3 296.8 1088.3Q230.0 945.3 230.0 744Q230.0 544.6 297.0 402.0Q364.0 259.3 481.1 183.3Q598.3 107.3 748.6 107.3Q885.9 107.3 990.4 168.0Q1094.9 228.6 1154.1 341.8Q1213.3 455.0 1213.3 612.6L1257.3 598.6H780.6V720.6H1346V598.6Q1346 408.3 1269.3 269.4Q1192.6 130.6 1057.6 55.3Q922.6 -20 748.6 -20Z" class="lg-word"></path><path transform="translate(156.261,72) scale(0.048322,-0.048322)" d="M139.3 0V1118H264.0V945.3H274.0Q308.0 1029.6 391.5 1081.5Q475.0 1133.3 579.9 1133.3Q595.6 1133.3 615.3 1133.0Q635.0 1132.6 648.0 1132V1000.6Q640.3 1001.9 618.0 1004.6Q595.6 1007.3 569.3 1007.3Q482.6 1007.3 414.3 970.1Q346.0 932.9 307.0 868.4Q268.0 803.9 268.0 720.6V0Z" class="lg-word"></path><path transform="translate(188.444,72) scale(0.048322,-0.048322)" d="M451.3 -25.3Q349.9 -25.3 265.9 14.3Q181.9 54.0 132.3 129.6Q82.6 205.3 82.6 312.6Q82.6 395.6 113.9 452.0Q145.3 508.3 202.9 544.8Q260.6 581.3 339.1 602.5Q417.6 623.6 512.6 635.3Q606.6 647.0 671.8 655.5Q736.9 664.0 770.8 683.1Q804.6 702.3 804.6 744.0V769.9Q804.6 884.6 736.8 950.3Q668.9 1015.9 542 1015.9Q421.3 1015.9 345.1 962.9Q269.0 909.9 238.6 837.9L114.6 882.6Q152.9 973.9 220.1 1028.8Q287.3 1083.6 370.1 1108.1Q452.9 1132.6 537.9 1132.6Q602.3 1132.6 671.3 1116.0Q740.3 1099.3 800.3 1058.0Q860.3 1016.6 897.5 943.5Q934.6 870.3 934.6 757.9V0H804.6V176.6H797.3Q774.6 127.6 728.6 81.3Q682.6 34.9 613.6 4.8Q544.6 -25.3 451.3 -25.3ZM468.6 92.6Q571.9 92.6 647.3 138.5Q722.6 184.3 763.6 261.0Q804.6 337.6 804.6 428.6V589.9Q790.3 576.3 756.4 565.3Q722.6 554.3 679.1 545.9Q635.6 537.6 591.4 531.8Q547.3 525.9 513.3 521.9Q418.6 510.3 351.3 485.3Q284.0 460.3 248.3 417.1Q212.6 374 212.6 306.0Q212.6 204.6 285.5 148.6Q358.3 92.6 468.6 92.6Z" class="lg-word"></path><path transform="translate(240.342,72) scale(0.048322,-0.048322)" d="M268.0 697.9V0H139.3V1118H264.0V941.3H276.6Q316.0 1027.6 399.1 1079.8Q482.3 1132 605.3 1132Q718.3 1132 803.6 1085.1Q889.0 1038.3 936.8 947.3Q984.6 856.3 984.6 723.3V0H855.9V715.3Q855.9 852.3 778.8 933.1Q701.6 1013.9 572.6 1013.9Q485.3 1013.9 416.3 975.4Q347.3 936.9 307.6 866.4Q268.0 795.9 268.0 697.9Z" class="lg-word"></path><path transform="translate(294.656,72) scale(0.048322,-0.048322)" d="M578.0 1118V1005.3H45.3V1118ZM211.9 1384H340.6V292.0Q340.6 201.3 385.6 155.6Q430.6 110.0 510.6 110.0Q528.9 110.0 547.3 112.5Q565.6 115.0 586.6 120.0L615.3 3.3Q592 -5.6 561.9 -10.8Q531.9 -15.9 499.9 -15.9Q375.6 -15.9 293.8 60.3Q211.9 136.6 211.9 261.3Z" class="lg-word"></path><path transform="translate(328.095,72) scale(0.048322,-0.048322)" d="M268.0 697.9V0H139.3V1490H268.0V941.3H280.6Q320.0 1028.3 402.1 1080.1Q484.3 1132 610.6 1132Q724.3 1132 810.3 1085.5Q896.3 1039.0 944.5 947.9Q992.6 856.9 992.6 723.3V0H862.6V715.3Q862.6 854.3 785.4 934.1Q708.3 1013.9 577.3 1013.9Q488.0 1013.9 418.3 975.4Q348.6 936.9 308.3 866.4Q268.0 795.9 268.0 697.9Z" class="lg-word"></path><path transform="translate(382.795,72) scale(0.048322,-0.048322)" d="M451.3 -25.3Q349.9 -25.3 265.9 14.3Q181.9 54.0 132.3 129.6Q82.6 205.3 82.6 312.6Q82.6 395.6 113.9 452.0Q145.3 508.3 202.9 544.8Q260.6 581.3 339.1 602.5Q417.6 623.6 512.6 635.3Q606.6 647.0 671.8 655.5Q736.9 664.0 770.8 683.1Q804.6 702.3 804.6 744.0V769.9Q804.6 884.6 736.8 950.3Q668.9 1015.9 542 1015.9Q421.3 1015.9 345.1 962.9Q269.0 909.9 238.6 837.9L114.6 882.6Q152.9 973.9 220.1 1028.8Q287.3 1083.6 370.1 1108.1Q452.9 1132.6 537.9 1132.6Q602.3 1132.6 671.3 1116.0Q740.3 1099.3 800.3 1058.0Q860.3 1016.6 897.5 943.5Q934.6 870.3 934.6 757.9V0H804.6V176.6H797.3Q774.6 127.6 728.6 81.3Q682.6 34.9 613.6 4.8Q544.6 -25.3 451.3 -25.3ZM468.6 92.6Q571.9 92.6 647.3 138.5Q722.6 184.3 763.6 261.0Q804.6 337.6 804.6 428.6V589.9Q790.3 576.3 756.4 565.3Q722.6 554.3 679.1 545.9Q635.6 537.6 591.4 531.8Q547.3 525.9 513.3 521.9Q418.6 510.3 351.3 485.3Q284.0 460.3 248.3 417.1Q212.6 374 212.6 306.0Q212.6 204.6 285.5 148.6Q358.3 92.6 468.6 92.6Z" class="lg-word"></path></svg>
+    <span class="status">In stealth · 2026</span>
   </header>
 
   <main>
-    <!-- Stacked lockup with Sanskrit caption below, per brand lockup-caption pattern -->
-    <div class="lockup" role="img" aria-label="Grantha">
-      <span class="mark" aria-hidden="true">ග</span>
-      <span class="wordmark">GRANTHA</span>
-      <div class="lockup-caption">
-        <span>Sanskrit</span>
-        <span class="dot" aria-hidden="true">·</span>
-        <span class="devanagari">ग्रन्थ</span>
-      </div>
-    </div>
+    <span class="rule rise d1" aria-hidden="true"></span>
+    <p class="kicker rise d1"><span>Sanskrit</span><span class="deva" lang="sa">ग्रन्थ</span></p>
 
-    <!-- Headline — etymological literal meaning, tagline recipe -->
-    <div class="tagline">
-      <span class="first">A knot,</span>
-      <span class="second">a tying together.</span>
-    </div>
+    <h1 class="rise d2">A knot. <span class="soft">A tying together.</span></h1>
 
-    <!-- Three meanings — dictionary-style, brand principle-list pattern -->
-    <ol class="meanings">
+    <p class="lede rise d3">The string that bound palm-leaf manuscripts into a book, so that every leaf stayed in its place.</p>
+
+    <ol class="meanings rise d4">
       <li>
         <span class="num">01</span>
-        <span class="meaning-title">A compilation of texts.</span>
-        <p class="meaning-body">A book, a treatise, a scripture. Bound from inscribed palm leaves and thread.</p>
+        <span class="meaning-title">A bound text.</span>
+        <p class="meaning-body">A book, a treatise, a scripture. Inscribed palm leaves held together by a thread.</p>
       </li>
       <li>
         <span class="num">02</span>
-        <span class="meaning-title">An ancient script.</span>
-        <p class="meaning-body">A Pallava-derived hand. Used to write classical Sanskrit from the fifth century onward.</p>
+        <span class="meaning-title">A script.</span>
+        <p class="meaning-body">A South Indian hand used to write Sanskrit for well over a thousand years.</p>
       </li>
       <li>
         <span class="num">03</span>
-        <span class="meaning-title">A unit of measurement.</span>
-        <p class="meaning-body">One grantha equals one śloka. Thirty-two syllables, a single complete thought.</p>
+        <span class="meaning-title">A measure.</span>
+        <p class="meaning-body">One grantha is one <span class="translit" lang="sa-Latn">śloka</span>: thirty-two syllables, a single complete thought.</p>
       </li>
     </ol>
   </main>
 
-  <footer>
-    <div class="left">
-      <span>&copy; Grantha 2026</span>
-    </div>
-    <div class="right">
-      <a href="mailto:info@grantha.ai" class="footer-email">info@grantha.ai</a>
-    </div>
+  <footer class="rise d4">
+    <span>&copy; Grantha 2026</span>
+    <a href="mailto:info@grantha.ai">info@grantha.ai</a>
   </footer>
 
 </div>
