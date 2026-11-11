@@ -41,6 +41,7 @@
 }
 
 * { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { background: var(--ground); color: var(--text); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -315,9 +316,14 @@ document.querySelectorAll('.copy').forEach(function (btn) {
   var h = document.querySelector('#stealth .hush');
   if (!h) return;
   var t = h.textContent; h.textContent = '';
+  /* Letters sit inside a no-wrap span per word, so narrow screens break between words, never inside one. */
+  var w = null;
   for (var i = 0; i < t.length; i++) {
     var s = document.createElement('span'); s.className = 'ch settled blown'; s.textContent = t[i];
-    s.style.setProperty('--i', i); h.appendChild(s);
+    s.style.setProperty('--i', i);
+    if (t[i] === ' ') { w = null; s.style.display = 'inline'; s.style.whiteSpace = 'normal'; h.appendChild(s); continue; }
+    if (!w) { w = document.createElement('span'); w.style.whiteSpace = 'nowrap'; w.style.display = 'inline-block'; h.appendChild(w); }
+    w.appendChild(s);
   }
   h.classList.add('split');
   /* Seen clearly underwater at first, then the sand drifts over the letters one by one. */
