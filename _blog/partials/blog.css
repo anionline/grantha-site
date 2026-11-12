@@ -123,3 +123,25 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
 .site-foot .lockup { height: 22px; }
 .site-foot .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .addr-small { font-family: var(--mono); user-select: all; }
+
+/* ---------- About: Who's building it (moved from the home page, 12 Nov) ---------- */
+.founder { display: flex; flex-direction: column; gap: 40px; }
+.founder h2 { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+@media (min-width: 720px) { .founder h2 { white-space: nowrap; font-size: clamp(30px, 3.6vw, 52px); } }
+.founder .who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; }
+.founder .who .name { margin: 0; font-family: var(--display); font-weight: 500; font-size: 26px; }
+.founder .who .role-line { margin: 0; color: var(--text-2); }
+.founder .cos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--text); }
+.founder .co { display: grid; grid-template-columns: 1fr; gap: 2px 28px; align-items: baseline; padding-block: 20px; border-bottom: 1px solid var(--hair); }
+@media (min-width: 760px) { .founder .co { grid-template-columns: 150px minmax(0, 1fr) 170px; } }
+.founder .co .name { font-family: var(--display); font-weight: 500; font-size: 21px; }
+.founder .co .what { color: var(--text-2); }
+.founder .co .exit { font-family: var(--mono); font-size: 15px; color: var(--gold); font-variant-numeric: tabular-nums; }
+@media (min-width: 760px) { .founder .co .exit { text-align: right; } }
+.founder .facts { margin: 0; display: grid; grid-template-columns: 1fr; gap: 0 48px; }
+@media (min-width: 760px) { .founder .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.founder .facts > div { padding-block: 18px; border-bottom: 1px solid var(--hair); display: grid; gap: 4px; align-content: start; }
+.founder .facts dt { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-2); }
+.founder .facts dd { margin: 0; }
+.founder .facts dd.jobs { display: grid; gap: 2px; }
+.founder .out { margin: 0; }

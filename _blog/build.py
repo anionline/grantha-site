@@ -5,11 +5,13 @@ Sources (in _blog/, which GitHub Pages does not publish):
   site.json        site URL, footer line, contact, and the ONE navigation list for every page
   posts.json       one entry per post (slug, title, date, author, role, dek (bold), dek1b, dek2 (italic), description, image, published)
   posts/<slug>.html  the post body (HTML fragment)
+  pages/about.html the About page body ("Who's building it", moved from the home page)
   partials/        blog.css, the two lockups, the shore wave
 
 Writes:
   blog/index.html              the index, newest first
   blog/<slug>/index.html       one page per published post, with share links and Older / Newer
+  about/index.html             the About page (Who's building it)
   blog/feed.xml                RSS for the published posts
   sitemap.xml                  home + blog pages
   index.html (home)            only the nav list between <!-- nav:start --> and <!-- nav:end -->
@@ -83,7 +85,7 @@ def share(p, cls=""):
         </div>"""
 
 
-def page(*, title, canonical, description, hero, main, og=None):
+def page(*, title, canonical, description, hero, main, og=None, current="blog"):
     og = og or {}
     meta = [
         f'<link rel="canonical" href="{e(canonical)}">',
@@ -125,7 +127,7 @@ def page(*, title, canonical, description, hero, main, og=None):
       <a href="/" aria-label="SeaSand, home">{LOCKUP_SEA}</a>
       <nav aria-label="Sections">
         <ul>
-          {nav(current="blog")}
+          {nav(current=current)}
         </ul>
       </nav>
     </header>
@@ -226,6 +228,24 @@ def build_post(i):
     ))
 
 
+def build_about():
+    body = read("pages", "about.html")
+    main = f"""  <div class="wrap">
+    <div class="rail"><p class="kicker">Founder</p></div>
+    <div class="main founder">
+{body}    </div>
+  </div>"""
+    write("about/index.html", page(
+        title="Who's building it · SeaSand",
+        canonical=f"{BASE}/about/",
+        description="Ani Chaudhuri, founder and CEO of SeaSand. Four companies, four acquisitions.",
+        hero='<p class="where">About</p>\n      <h1>Who\'s building it</h1>',
+        main=main,
+        og={"title": "Who's building it · SeaSand"},
+        current="about",
+    ))
+
+
 def build_feed():
     items = "".join(f"""
   <item>
@@ -248,7 +268,7 @@ def build_feed():
 
 
 def build_sitemap():
-    urls = [f"{BASE}/", f"{BASE}/blog/"] + [url_of(p) for p in posts]
+    urls = [f"{BASE}/", f"{BASE}/about/", f"{BASE}/blog/"] + [url_of(p) for p in posts]
     body = "".join(f"\n  <url><loc>{u}</loc></url>" for u in urls)
     write("sitemap.xml", f'<?xml version="1.0" encoding="utf-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}\n</urlset>\n')
 
@@ -279,6 +299,7 @@ if __name__ == "__main__":
     build_index()
     for i in range(len(posts)):
         build_post(i)
+    build_about()
     build_feed()
     build_sitemap()
     sync_home_nav()
