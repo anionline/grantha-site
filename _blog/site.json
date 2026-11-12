@@ -1,0 +1,12 @@
+{
+  "site": "https://seasand.ai",
+  "name": "SeaSand",
+  "footer": "&copy; 2026",
+  "contact": "info@seasand.ai",
+  "nav": [
+    { "label": "Hiring",        "home": "#hiring",     "href": "/#hiring" },
+    { "label": "Founder",       "home": "#founder",    "href": "/#founder" },
+    { "label": "The Sea Suite", "home": "#roundtable", "href": "/#roundtable" },
+    { "label": "Blog",          "home": "/blog/",      "href": "/blog/", "section": "blog" }
+  ]
+}

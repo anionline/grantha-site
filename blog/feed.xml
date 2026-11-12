@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+  <title>SeaSand Blog</title>
+  <link>https://seasand.ai/blog/</link>
+  <description>Writing from SeaSand.</description>
+  <language>en</language>
+  <item>
+    <title>Why SeaSand Exists</title>
+    <link>https://seasand.ai/blog/why-seasand/</link>
+    <guid>https://seasand.ai/blog/why-seasand/</guid>
+    <pubDate>Wed, 11 Nov 2026 12:00:00 +0000</pubDate>
+    <description>The world needs people and machines to work as partners. SeaSand exists to build that.</description>
+  </item>
+</channel>
+</rss>
