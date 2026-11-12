@@ -3,7 +3,7 @@
 
 Sources (in _blog/, which GitHub Pages does not publish):
   site.json        site URL, footer line, contact, and the ONE navigation list for every page
-  posts.json       one entry per post (slug, title, date, author, role, dek, dek2, description, image, published)
+  posts.json       one entry per post (slug, title, date, author, role, dek (bold), dek1b, dek2 (italic), description, image, published)
   posts/<slug>.html  the post body (HTML fragment)
   partials/        blog.css, the two lockups, the shore wave
 
@@ -189,7 +189,8 @@ def build_post(i):
     body = read("posts", f"{p['slug']}.html")
     hero = (f'<p class="where"><a href="/blog/">Blog</a><span aria-hidden="true">·</span>'
             f'<time datetime="{p["date"]}">{fmt(p["date"])}</time></p>\n'
-            f'      <h1>{e(p["title"])}</h1>\n      <p class="dek">{e(p["dek"])}</p>')
+            f'      <h1>{e(p["title"])}</h1>\n      <p class="dek"><strong>{e(p["dek"])}</strong>'
+            + (f' {e(p["dek1b"])}' if p.get("dek1b") else '') + '</p>')
     if p.get("dek2"):
         hero += f'\n      <p class="dek2">{e(p["dek2"])}</p>'
     older_html = (f'<a href="/blog/{older["slug"]}/"><span class="k">&#8592; Older</span><span class="t">{e(older["title"])}</span></a>'
