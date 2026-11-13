@@ -5,7 +5,6 @@
   "contact": "info@seasand.ai",
   "nav": [
     { "label": "Hiring",        "home": "#hiring",     "href": "/#hiring" },
-    { "label": "Founder",       "home": "/about/",     "href": "/about/", "section": "about" },
     { "label": "The Sea Suite", "home": "#roundtable", "href": "/#roundtable" },
     { "label": "Blog",          "home": "/blog/",      "href": "/blog/", "section": "blog" }
   ]

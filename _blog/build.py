@@ -5,13 +5,12 @@ Sources (in _blog/, which GitHub Pages does not publish):
   site.json        site URL, footer line, contact, and the ONE navigation list for every page
   posts.json       one entry per post (slug, title, date, author, role, dek (bold), dek1b, dek2 (italic), description, image, published)
   posts/<slug>.html  the post body (HTML fragment)
-  pages/about.html the About page body ("Who's building it", moved from the home page)
+  pages/about.html the Founder page body: dormant, not built or linked (off the site since 12 Nov)
   partials/        blog.css, the two lockups, the shore wave
 
 Writes:
   blog/index.html              the index, newest first
   blog/<slug>/index.html       one page per published post, with share links and Older / Newer
-  about/index.html             the About page (Who's building it)
   blog/feed.xml                RSS for the published posts
   sitemap.xml                  home + blog pages
   index.html (home)            only the nav list between <!-- nav:start --> and <!-- nav:end -->
@@ -268,7 +267,7 @@ def build_feed():
 
 
 def build_sitemap():
-    urls = [f"{BASE}/", f"{BASE}/about/", f"{BASE}/blog/"] + [url_of(p) for p in posts]
+    urls = [f"{BASE}/", f"{BASE}/blog/"] + [url_of(p) for p in posts]
     body = "".join(f"\n  <url><loc>{u}</loc></url>" for u in urls)
     write("sitemap.xml", f'<?xml version="1.0" encoding="utf-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}\n</urlset>\n')
 
@@ -299,7 +298,7 @@ if __name__ == "__main__":
     build_index()
     for i in range(len(posts)):
         build_post(i)
-    build_about()
+    # build_about()   # Founder page off the site (Ani, 12 Nov: rebuild once there is a team)
     build_feed()
     build_sitemap()
     sync_home_nav()
