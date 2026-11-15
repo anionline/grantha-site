@@ -113,6 +113,7 @@ def page(*, title, canonical, description, hero, main, og=None, current="blog"):
 <title>{e(title)}</title>
 {meta}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="SeaSand Blog" href="/blog/feed.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;500&family=Noto+Sans+JP:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
