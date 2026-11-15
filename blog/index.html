@@ -11,7 +11,7 @@
 <meta property="og:title" content="SeaSand Blog">
 <meta property="og:description" content="Writing from SeaSand.">
 <meta property="og:url" content="https://seasand.ai/blog/">
-<meta property="og:image" content="https://seasand.ai/blog/why-seasand/og.png">
+<meta property="og:image" content="https://seasand.ai/blog/ais-spacex-moment/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 <meta name="twitter:card" content="summary_large_image">
@@ -166,6 +166,12 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
 .founder .facts dd { margin: 0; }
 .founder .facts dd.jobs { display: grid; gap: 2px; }
 .founder .out { margin: 0; }
+
+/* Post 2 (AI's SpaceX moment): video embed and the longer statement line */
+.video { margin: 2em 0; display: grid; gap: 10px; }
+.video iframe { aspect-ratio: 16 / 9; width: 100%; height: auto; border: 0; display: block; background: var(--sea); }
+.video figcaption { font-size: 15px; color: var(--text-2); }
+.statement p.long { font-size: clamp(28px, 3.6vw, 44px); max-width: 26ch; }
 </style>
 </head>
 <body>
@@ -194,6 +200,11 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
   <div class="wrap">
     <div class="rail"><p class="kicker">All posts</p></div>
     <div class="main"><ul class="posts">
+        <li class="post-row"><a href="/blog/ais-spacex-moment/">
+          <p class="date"><time datetime="2026-11-15">Nov 15, 2026</time></p>
+          <span class="txt"><span class="t">AI&#x27;s SpaceX moment</span><span class="d">Reusable rockets changed the economics of space. AI still flies single-use. It hasn&#x27;t had its SpaceX moment yet.</span></span>
+          <span class="arrow" aria-hidden="true">&#8594;</span>
+        </a></li>
         <li class="post-row"><a href="/blog/why-seasand/">
           <p class="date"><time datetime="2026-11-12">Nov 12, 2026</time></p>
           <span class="txt"><span class="t">Why SeaSand Exists</span><span class="d">The world needs people and machines to work as partners. SeaSand exists to build that.</span></span>

@@ -1,5 +1,16 @@
 [
   {
+    "slug": "ais-spacex-moment",
+    "title": "AI's SpaceX moment",
+    "date": "2026-11-15",
+    "author": "Ani Chaudhuri",
+    "role": "Founder",
+    "dek": "Reusable rockets changed the economics of space. AI still flies single-use. It hasn't had its SpaceX moment yet.",
+    "description": "Reusable rockets changed the economics of space. AI still flies single-use. It hasn't had its SpaceX moment yet.",
+    "image": "og.png",
+    "published": true
+  },
+  {
     "slug": "why-seasand",
     "title": "Why SeaSand Exists",
     "date": "2026-11-12",

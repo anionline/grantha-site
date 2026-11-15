@@ -167,6 +167,12 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
 .founder .facts dd { margin: 0; }
 .founder .facts dd.jobs { display: grid; gap: 2px; }
 .founder .out { margin: 0; }
+
+/* Post 2 (AI's SpaceX moment): video embed and the longer statement line */
+.video { margin: 2em 0; display: grid; gap: 10px; }
+.video iframe { aspect-ratio: 16 / 9; width: 100%; height: auto; border: 0; display: block; background: var(--sea); }
+.video figcaption { font-size: 15px; color: var(--text-2); }
+.statement p.long { font-size: clamp(28px, 3.6vw, 44px); max-width: 26ch; }
 </style>
 </head>
 <body>
@@ -258,7 +264,7 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
         </div>
         <nav class="pn" aria-label="More posts">
           <span class="none">This is the first post.</span>
-          <span class="none newer">Newer posts will appear here.</span>
+          <a class="newer" href="/blog/ais-spacex-moment/"><span class="k">Newer &#8594;</span><span class="t">AI&#x27;s SpaceX moment</span></a>
         </nav>
         <a class="allposts" href="/blog/">&#8592; All posts</a>
       </div>
