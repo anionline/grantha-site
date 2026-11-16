@@ -220,6 +220,43 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 footer .lockup { height: 22px; }
 footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .addr-small { font-family: var(--mono); user-select: all; }
+
+/* ---------- Alternation (Ani, 16 Nov): blue, sand, blue, sand ----------
+   Top band on the sea, About on sand, Hiring on the sea with moving water, The Sea Suite on sand. */
+.part.on-sea { background: var(--sea); color: var(--foam); position: relative; overflow: hidden; isolation: isolate; border-bottom: 0; }
+.part.on-sea > .wrap { position: relative; z-index: 1; }
+.part.on-sea .rail::before { background: var(--foam); height: 2px; }
+.part.on-sea .kicker { color: var(--sand); }
+.part.on-sea h2, .part.on-sea .role h3 { color: var(--foam); }
+.part.on-sea .lede, .part.on-sea .role p, .part.on-sea .role .area { color: #ead9bb; }
+.part.on-sea .roles { border-top-color: var(--foam); }
+.part.on-sea .role { border-bottom-color: rgba(251, 248, 242, 0.32); }
+.part.on-sea .reach { --reach: #ead9bb; }
+.part.on-sea .copy:hover { color: var(--sea); }
+.part.on-sea a { color: var(--foam); }
+
+.suite { background: var(--ground); color: var(--text); border-bottom: 1px solid var(--hair); }
+.suite .rail::before { background: var(--sea); }
+:root[data-theme="dark"] .suite .rail::before { height: 4px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .suite .rail::before { height: 4px; } }
+.suite .kicker { color: var(--gold); }
+.suite .lede { color: var(--text-2); }
+.suite .terms dt { color: var(--gold); }
+.suite .reach { --reach: var(--gold); }
+.suite .copy:hover { color: var(--ground); }
+.reg-link { background: var(--sea); color: var(--foam) !important; align-self: flex-start; }
+.reg-link:hover { background: #1d3f6c; }
+.reg { --pale: var(--text-2); border-top-color: var(--text); }
+.field label { color: var(--gold); }
+.field input, .field select, .field textarea { color: var(--text); background: var(--raised); border-color: var(--hair); }
+.field input:focus, .field select:focus, .field textarea:focus { outline-color: var(--sea); border-color: var(--sea); }
+.field input[aria-invalid="true"], .field select[aria-invalid="true"] { border-color: var(--gold); }
+.reg .send { background: var(--sea); color: var(--foam); }
+.reg .send:hover { background: #1d3f6c; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .reg-link, :root:not([data-theme="light"]) .reg .send { background: var(--foam); color: var(--sea) !important; }
+  :root:not([data-theme="light"]) .field input:focus, :root:not([data-theme="light"]) .field select:focus, :root:not([data-theme="light"]) .field textarea:focus { outline-color: var(--foam); border-color: var(--foam); }
+}
 </style>
 </head>
 <body>
@@ -269,7 +306,8 @@ footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20
     </div>
   </section>
 
-  <section class="part" id="hiring" aria-labelledby="hiring-h">
+  <section class="part on-sea" id="hiring" aria-labelledby="hiring-h">
+    <canvas class="water" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="rail"><p class="kicker">Hiring</p></div>
       <div class="body">
@@ -378,9 +416,8 @@ document.querySelectorAll('.copy').forEach(function (btn) {
     for (var j = 0; j < cs.length; j++) (function (c, k) { setTimeout(function () { c.classList.remove('blown'); }, k * 80); })(cs[j], j);
   }, 1400);
 })();
-(function () {
-  var cv = document.getElementById('water');
-  if (!cv || !cv.getContext) return;
+document.querySelectorAll('canvas.water').forEach(function (cv) {
+  if (!cv.getContext) return;
   var ctx = cv.getContext('2d');
   var W = 200, H = 100;                       /* low-resolution field, scaled up soft */
   var off = document.createElement('canvas'); off.width = W; off.height = H;
@@ -428,7 +465,7 @@ document.querySelectorAll('.copy').forEach(function (btn) {
     start();
   }
   var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { size(); frame(performance.now()); }, 150); });
-})();
+});
 
 (function () {
   var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
