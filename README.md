@@ -1,6 +1,6 @@
 # seasand.ai
 
-SeaSand stealth landing page and blog.
+SeaSand landing page and blog.
 
 Static files on GitHub Pages: the home page `index.html`, the blog under `blog/`, plus `favicon.svg`, `robots.txt` and `sitemap.xml`. Custom domain set by the `CNAME` file and the apex DNS records at Namecheap.
 
