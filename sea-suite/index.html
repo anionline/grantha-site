@@ -311,7 +311,7 @@ footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20
       <div class="reg" id="register">
         <h3 id="register-h">Register</h3>
         <p class="note">A few details so we can match you with the right group. We use them only to arrange The Sea Suite.</p>
-        <form id="reg-form" novalidate aria-labelledby="register-h" data-endpoint="">
+        <form id="reg-form" novalidate aria-labelledby="register-h" data-endpoint="https://script.google.com/macros/s/AKfycby9Z4H0Uax1z3xopWrh187xm1cBpb0msb2tznGUWcy6KbCytxaTSXmquEnY74zhyKpP/exec">
           <div class="field"><label for="r-name">Name</label><input id="r-name" name="name" autocomplete="name" required><p class="err" hidden></p></div>
           <div class="field"><label for="r-email">Work email</label><input id="r-email" name="email" type="email" autocomplete="email" required><p class="err" hidden></p></div>
           <div class="field"><label for="r-title">Title</label><input id="r-title" name="title" autocomplete="organization-title" required><p class="err" hidden></p></div>
@@ -491,7 +491,7 @@ document.querySelectorAll('canvas.water').forEach(function (cv) {
 })();
 
 /* The Sea Suite registration. The form posts to data-endpoint (set by CIT&S: a Google Apps Script web app that
-   logs the row and emails Ani a copy). With no endpoint (this draft) it shows the thank-you without sending. */
+   logs the row and emails Ani a copy). Live since 16 Nov 2026. */
 (function () {
   var f = document.getElementById('reg-form'); if (!f) return;
   var thanks = document.getElementById('reg-thanks'), fail = f.querySelector('.fail'), btn = f.querySelector('.send');
