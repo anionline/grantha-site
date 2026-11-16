@@ -13,7 +13,8 @@ Writes:
   blog/<slug>/index.html       one page per published post, with share links and Older / Newer
   blog/feed.xml                RSS for the published posts
   sitemap.xml                  home + blog pages
-  index.html (home)            only the nav list between <!-- nav:start --> and <!-- nav:end -->
+  index.html, sea-suite/index.html, about/index.html
+                               only the nav list between <!-- nav:start --> and <!-- nav:end -->
 
 Add a post: write posts/<slug>.html, add its entry to posts.json, run `python3 _blog/build.py`, commit.
 Add a nav item: add it to site.json "nav" and run the build; home and every blog page pick it up.
@@ -162,29 +163,23 @@ document.addEventListener('click', function (ev) {{
 """
 
 
-def build_index():
-    rows = "".join(f"""
-        <li class="post-row"><a href="/blog/{p['slug']}/">
-          <p class="date"><time datetime="{p['date']}">{fmt(p['date'])}</time></p>
-          <span class="txt"><span class="t">{e(p['title'])}</span><span class="d">{e(p['dek'])}</span></span>
-          <span class="arrow" aria-hidden="true">&#8594;</span>
-        </a></li>""" for p in posts)
-    main = f"""  <div class="wrap">
-    <div class="rail"><p class="kicker">All posts</p></div>
-    <div class="main"><ul class="posts">{rows}
-    </ul></div>
-  </div>"""
-    write("blog/index.html", page(
-        title="Blog · SeaSand",
-        canonical=f"{BASE}/blog/",
-        description="Writing from SeaSand.",
-        hero='<p class="where">SeaSand</p>\n      <h1>Blog</h1>',
-        main=main,
-        og={"title": "SeaSand Blog", "image": f"{BASE}/blog/{posts[0]['slug']}/{posts[0]['image']}" if posts and posts[0].get("image") else None},
-    ))
+def post_nav(current_slug):
+    """Left nav on every blog page: all posts, newest first, the one on screen marked."""
+    items = "".join(
+        f"""
+          <li><a href="/blog/{q['slug']}/"{' aria-current="page"' if q['slug'] == current_slug else ''}>"""
+        f"""<span class="date"><time datetime="{q['date']}">{fmt(q['date'])}</time></span>"""
+        f"""<span class="t">{e(q['title'])}</span></a></li>"""
+        for q in posts)
+    return f"""<nav class="postnav" aria-label="Blog posts">
+        <p class="kicker">Posts</p>
+        <ul>{items}
+        </ul>
+      </nav>"""
 
 
-def build_post(i):
+def post_parts(i):
+    """Hero and main for post i; used by the post's own page and, for the newest post, by /blog/."""
     p = posts[i]
     newer = posts[i - 1] if i > 0 else None
     older = posts[i + 1] if i + 1 < len(posts) else None
@@ -198,10 +193,10 @@ def build_post(i):
     older_html = (f'<a href="/blog/{older["slug"]}/"><span class="k">&#8592; Older</span><span class="t">{e(older["title"])}</span></a>'
                   if older else '<span class="none">This is the first post.</span>')
     newer_html = (f'<a class="newer" href="/blog/{newer["slug"]}/"><span class="k">Newer &#8594;</span><span class="t">{e(newer["title"])}</span></a>'
-                  if newer else '<span class="none newer">Newer posts will appear here.</span>')
+                  if newer else '<span class="none newer">This is the newest post.</span>')
     main = f"""  <div class="wrap">
-    <div class="rail"><div class="stick"><p class="kicker">{e(p['author'])}</p><p class="who">{e(p.get('role', ''))}</p>
-        {share(p)}
+    <div class="rail"><div class="stick">
+      {post_nav(p['slug'])}
     </div></div>
     <div class="main">
       <article class="prose">
@@ -209,14 +204,32 @@ def build_post(i):
       </article>
       <div class="post-end">
         {share(p)}
-        <nav class="pn" aria-label="More posts">
+        <nav class="pn" aria-label="Older and newer posts">
           {older_html}
           {newer_html}
         </nav>
-        <a class="allposts" href="/blog/">&#8592; All posts</a>
       </div>
     </div>
   </div>"""
+    return p, hero, main
+
+
+def build_index():
+    # /blog/ opens on the newest post, with every post in the left nav (Ani, 16 Nov).
+    p, hero, main = post_parts(0)
+    image = f"{url_of(p)}{p['image']}" if p.get("image") else None
+    write("blog/index.html", page(
+        title=f"{p['title']} · SeaSand Blog",
+        canonical=url_of(p),
+        description=p.get("description", p["dek"]),
+        hero=hero,
+        main=main,
+        og={"type": "article", "title": p["title"], "image": image, "published": p["date"]},
+    ))
+
+
+def build_post(i):
+    p, hero, main = post_parts(i)
     image = f"{url_of(p)}{p['image']}" if p.get("image") else None
     write(f"blog/{p['slug']}/index.html", page(
         title=f"{p['title']} · SeaSand",
@@ -268,21 +281,29 @@ def build_feed():
 
 
 def build_sitemap():
-    urls = [f"{BASE}/", f"{BASE}/blog/"] + [url_of(p) for p in posts]
+    urls = [f"{BASE}/", f"{BASE}/blog/", f"{BASE}/sea-suite/", f"{BASE}/about/"] + [url_of(p) for p in posts]
     body = "".join(f"\n  <url><loc>{u}</loc></url>" for u in urls)
     write("sitemap.xml", f'<?xml version="1.0" encoding="utf-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}\n</urlset>\n')
 
 
-def sync_home_nav():
-    path = os.path.join(ROOT, "index.html")
+def sync_page_nav(rel, home=False, current=None):
+    """Rewrite the nav list between <!-- nav:start --> and <!-- nav:end --> in a hand-built page."""
+    path = os.path.join(ROOT, rel)
     s = open(path, encoding="utf-8").read()
     pat = re.compile(r"(<!-- nav:start -->\n)(.*?)(\n\s*<!-- nav:end -->)", re.S)
     if not pat.search(s):
-        sys.exit("index.html: nav markers not found")
-    s2 = pat.sub(lambda m: m.group(1) + "          " + nav(home=True) + m.group(3), s, count=1)
+        sys.exit(f"{rel}: nav markers not found")
+    s2 = pat.sub(lambda m: m.group(1) + "          " + nav(current=current, home=home) + m.group(3), s, count=1)
     if s2 != s:
         open(path, "w", encoding="utf-8").write(s2)
-        print("updated index.html nav")
+        print(f"updated {rel} nav")
+
+
+def sync_home_nav():
+    # Home (Hiring), then the hand-built section pages (16 Nov: one section per page).
+    sync_page_nav("index.html", home=True, current="home")
+    sync_page_nav("sea-suite/index.html", current="sea-suite")
+    sync_page_nav("about/index.html", current="about")
 
 
 def clean_stale():
@@ -299,7 +320,7 @@ if __name__ == "__main__":
     build_index()
     for i in range(len(posts)):
         build_post(i)
-    # build_about()   # Founder page off the site (Ani, 12 Nov: rebuild once there is a team)
+    # build_about() stays off: /about/ is now a hand-built page (about/index.html, 16 Nov); only its nav is synced.
     build_feed()
     build_sitemap()
     sync_home_nav()

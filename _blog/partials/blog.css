@@ -151,3 +151,14 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
 .video iframe { aspect-ratio: 16 / 9; width: 100%; height: auto; border: 0; display: block; background: var(--sea); }
 .video figcaption { font-size: 15px; color: var(--text-2); }
 .statement p.long { font-size: clamp(28px, 3.6vw, 44px); max-width: 26ch; }
+
+/* Left nav of posts on every blog page (Ani, 16 Nov): /blog/ opens on the newest post. */
+.postnav { display: grid; gap: 12px; }
+.postnav ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--text); }
+.postnav li { border-bottom: 1px solid var(--hair); }
+.postnav a { display: grid; gap: 4px; padding: 14px 0; color: var(--text); text-decoration: none; }
+.postnav .date { font-family: var(--mono); font-size: 13px; color: var(--gold); }
+.postnav .t { font-family: var(--display); font-weight: 500; font-size: 17px; line-height: 1.3; text-wrap: balance; }
+.postnav a:hover .t { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.postnav a[aria-current] { padding-left: 12px; box-shadow: inset 3px 0 0 var(--sea); }
+.postnav a[aria-current] .t { color: var(--link); }

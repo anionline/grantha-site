@@ -221,8 +221,8 @@ footer .lockup { height: 22px; }
 footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .addr-small { font-family: var(--mono); user-select: all; }
 
-/* ---------- Alternation (Ani, 16 Nov): blue, sand, blue, sand ----------
-   Top band on the sea, About on sand, Hiring on the sea with moving water, The Sea Suite on sand. */
+/* ---------- Light pages (Ani, 16 Nov): only the top band of each page is on the sea; every section sits on sand.
+   .part.on-sea is kept for a future blue section but is not used. */
 .part.on-sea { background: var(--sea); color: var(--foam); position: relative; overflow: hidden; isolation: isolate; border-bottom: 0; }
 .part.on-sea > .wrap { position: relative; z-index: 1; }
 .part.on-sea .rail::before { background: var(--foam); height: 2px; }
@@ -257,6 +257,11 @@ footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20
   :root:not([data-theme="light"]) .reg-link, :root:not([data-theme="light"]) .reg .send { background: var(--foam); color: var(--sea) !important; }
   :root:not([data-theme="light"]) .field input:focus, :root:not([data-theme="light"]) .field select:focus, :root:not([data-theme="light"]) .field textarea:focus { outline-color: var(--foam); border-color: var(--foam); }
 }
+
+/* ---------- Pages (Ani, 16 Nov): Hiring on the home page; Blog, The Sea Suite and About each on their own page ---------- */
+.hero.hero-sub { padding-block: 64px 56px; gap: 20px; }
+@media (min-width: 760px) { .hero.hero-sub { padding-block: 104px 80px; } }
+.top nav a[aria-current] { border-bottom-color: var(--foam); }
 </style>
 </head>
 <body>
@@ -268,10 +273,10 @@ footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20
       <nav aria-label="Sections">
         <ul>
           <!-- nav:start -->
-          <li><a href="#about">About</a></li>
-          <li><a href="#hiring">Hiring</a></li>
-          <li><a href="#roundtable">The Sea Suite</a></li>
+          <li><a href="#hiring" aria-current="page">Hiring</a></li>
           <li><a href="/blog/">Blog</a></li>
+          <li><a href="/sea-suite/">The Sea Suite</a></li>
+          <li><a href="/about/">About</a></li>
           <!-- nav:end -->
         </ul>
       </nav>
@@ -291,23 +296,7 @@ footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20
 
 <main>
 
-  <section class="part" id="about" aria-labelledby="about-h">
-    <div class="wrap">
-      <div class="rail"><p class="kicker">About</p></div>
-      <div class="body">
-        <h2 id="about-h">Co-context Platform for people and machines</h2>
-        <div class="about-copy"><p class="first">One shared context, so people and AI can work as partners.</p><p>Today&rsquo;s file systems were built for people. Now AI reads and writes more than people do, and it uses those files the hard way. It rereads whole folders for every question, gives a different answer each time, and throws its work away once it replies. That means high token costs, inconsistent results and work that is used once. Meanwhile, people are gradually losing sight of the context behind the work AI does for them.</p><p>AI is waiting for its SpaceX moment. Work an AI does once should land where people and every AI can find it, and then fly again. When people and machines share the same context, they can work as partners.</p><p>We are a small team in the San Francisco Bay Area, and we are hiring.</p></div>
-        <ul class="team" aria-label="Founding team">
-          <li class="member"><div><h3>Ani Chaudhuri</h3><p class="title">Founder &amp; CEO</p></div><p class="bio">Ani has built four companies, and all four were acquired: Dasera, in data security, by Netskope in 2024; Whodini, in language processing and search, by Declara in 2014; Opelin, in backup and restore, by HP in 2007; and eCircle, a commodities trading platform, by Reliance in 2003. Besides founding companies, he was an Associate Partner at McKinsey &amp; Company, a Director at HP and a Senior Executive Officer at Tata Steel. He holds seven patents. He wrote <em>Pathfinders: 12 Product Leadership Lessons from Elite Paratroopers</em>, and he is a static-line parachutist with the WWII Airborne Demonstration Team. SeaSand is his fifth company.</p></li>
-          <li class="member"><div><h3>Sadish Ravi</h3><p class="title">Co-founder &amp; CTO</p></div><p class="bio">Sadish was a founding engineer at Moveworks, which ServiceNow acquired for $2.85 billion. At Moveworks he built enterprise search that reached across more than fifty connected systems, with federated search over all of them. He also founded the company&rsquo;s development center in Canada and grew it from zero to fifty engineers. Earlier he built the data platform at Indiegogo and worked on e-discovery at Rational Retention. He has spent his career turning hard search and data problems into systems that large companies run every day, and building the teams that run them. At SeaSand he leads engineering and sets the bar for how we build.</p></li>
-          <li class="member"><div><h3>Jason Zajac</h3><p class="title">Co-founder &amp; CBO</p></div><p class="bio">Jason has spent about twenty-five years running technology businesses at scale. He was Chief Strategy Officer at Arm, and before that a Managing Director and Partner at Boston Consulting Group, where he worked across technology, media and telecom. He has held strategy and general management roles at NBCUniversal, HP, Yahoo and Palm, including running a $1 billion P&amp;L. He holds an AB from Stanford and an MBA from the Stanford Graduate School of Business. Jason knows how large companies buy, decide and change, and he has led them through it. At SeaSand he leads the business: customers, partnerships and the deals that take us from first users to scale.</p></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="part on-sea" id="hiring" aria-labelledby="hiring-h">
-    <canvas class="water" aria-hidden="true"></canvas>
+  <section class="part" id="hiring" aria-labelledby="hiring-h">
     <div class="wrap">
       <div class="rail"><p class="kicker">Hiring</p></div>
       <div class="body">
@@ -331,45 +320,6 @@ footer .left { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20
 
 </main>
 
-<section class="suite" id="roundtable" aria-labelledby="roundtable-h">
-  <div class="wrap">
-    <div class="rail"><p class="kicker">CIO roundtable</p></div>
-    <div class="body">
-      <h2 id="roundtable-h">Join The Sea Suite.</h2>
-      <p class="lede">The Sea Suite is a roundtable on putting AI to work. We're bringing together a small group of CIOs and other technology leaders who are rolling AI out across a large company. It's a conversation among peers about what's working, what isn't, and why. It isn't a sales pitch.</p>
-      <a class="reg-link" href="#register">Register for The Sea Suite <span aria-hidden="true">&#8595;</span></a>
-      <dl class="terms">
-        <div><dt>Who</dt><dd>CIOs, CTOs, chief data officers and CFOs.</dd></div>
-        <div><dt>Format</dt><dd>A small group, online to start. Nothing said is attributed to anyone.</dd></div>
-        <div><dt>Cost</dt><dd>None.</dd></div>
-      </dl>
-      <div class="reg" id="register">
-        <h3 id="register-h">Register</h3>
-        <p class="note">A few details so we can match you with the right group. We use them only to arrange The Sea Suite.</p>
-        <form id="reg-form" novalidate aria-labelledby="register-h" data-endpoint="">
-          <div class="field"><label for="r-name">Name</label><input id="r-name" name="name" autocomplete="name" required><p class="err" hidden></p></div>
-          <div class="field"><label for="r-email">Work email</label><input id="r-email" name="email" type="email" autocomplete="email" required><p class="err" hidden></p></div>
-          <div class="field"><label for="r-title">Title</label><input id="r-title" name="title" autocomplete="organization-title" required><p class="err" hidden></p></div>
-          <div class="field"><label for="r-company">Company</label><input id="r-company" name="company" autocomplete="organization" required><p class="err" hidden></p></div>
-          <div class="field"><label for="r-role">Your role</label><select id="r-role" name="role" required><option value="">Choose one</option><option>CIO</option><option>CTO</option><option>Chief data officer</option><option>CFO</option><option>Other technology leader</option></select><p class="err" hidden></p></div>
-          <div class="field"><label for="r-size">Company size</label><select id="r-size" name="size"><option value="">Choose one</option><option>Under 1,000 people</option><option>1,000 to 10,000</option><option>Over 10,000</option></select></div>
-          <div class="field full"><label for="r-note">What would you like to talk about? <span class="opt">(optional)</span></label><textarea id="r-note" name="note"></textarea></div>
-          <div class="hp" aria-hidden="true"><label for="r-web">Website</label><input id="r-web" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="full"><button class="send" type="submit">Register</button></div>
-          <p class="fail full" hidden></p>
-        </form>
-        <div class="thanks" id="reg-thanks" hidden>
-          <h3 tabindex="-1">Thank you, <span id="reg-first"></span>.</h3>
-          <p>You're registered for The Sea Suite. We'll write to <span id="reg-mail" class="addr-small"></span> with the first date and the group.</p>
-        </div>
-      </div>
-      <div class="reach">
-        <p>Prefer email? Write to us with "The Sea Suite" in the subject line.</p>
-        <div class="addr-row"><span class="addr" id="addr-roundtable">info@seasand.ai</span><button class="copy" type="button" id="copy-roundtable" data-copy="info@seasand.ai">Copy address</button></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
