@@ -168,8 +168,23 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
 .bar a { color: var(--foam); }
 .bar .top { padding-block: 18px; }
 @media (min-width: 760px) { .bar .top { padding-block: 22px; } }
-.bar + .sea .hero { padding-top: 40px; }
-@media (min-width: 760px) { .bar + .sea .hero { padding-top: 72px; } }
 @media (min-width: 960px) { .rail .stick { top: calc(env(safe-area-inset-top, 0px) + 112px); } }
 html { scroll-padding-top: 136px; }
 @media (min-width: 760px) { html { scroll-padding-top: 100px; } }
+
+/* Standard top band (Ani, 16 Nov): same as /about/ and /sea-suite/ — moving water, "SeaSand" kicker, page name. */
+.sea { position: relative; overflow: hidden; isolation: isolate; }
+.sea > .wrap { position: relative; z-index: 1; }
+.water { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; pointer-events: none; }
+.hero.hero-sub { padding-block: 64px 56px; gap: 20px; }
+@media (min-width: 760px) { .hero.hero-sub { padding-block: 104px 80px; } }
+.hero .title { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(44px, 7.6vw, 104px); line-height: 1; letter-spacing: -0.03em; }
+.sea + .part { margin-top: 0; }
+/* The post's heading now opens the article column, on sand. */
+.post-head { display: grid; gap: 16px; margin-bottom: 40px; max-width: 34em; }
+.post-head .date { font-size: 13px; letter-spacing: 1px; }
+.post-head h1 { font-weight: 500; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.08; letter-spacing: -0.02em; max-width: 22ch; color: var(--text); }
+.post-head .dek { color: var(--text); }
+.post-head .dek2 { color: var(--text-2); }
+/* Phones: the post comes first, the list of posts after it. From 960px the list is the left nav. */
+@media (max-width: 959px) { .part > .wrap > .main { order: -1; } }

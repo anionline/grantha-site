@@ -45,7 +45,8 @@ BASE = SITE["site"].rstrip("/")
 CSS = read("partials", "blog.css")
 LOCKUP_SEA = read("partials", "lockup-sea.svg")
 LOCKUP_FOOT = read("partials", "lockup-foot.svg")
-SHORE = read("partials", "shore.svg")
+SHORE = read("partials", "shore.svg")  # no longer used on blog pages (16 Nov)
+WATER_JS = read("partials", "water.js")
 
 posts = [p for p in json.loads(read("posts.json")) if p.get("published", True)]
 posts.sort(key=lambda p: p["date"], reverse=True)          # newest first
@@ -134,13 +135,13 @@ def page(*, title, canonical, description, hero, main, og=None, current="blog"):
     </header>
   </div>
 </div>
-<div class="sea">
+<div class="sea sea-sub">
+  <canvas class="water" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div class="hero">
+    <div class="hero hero-sub">
       {hero}
     </div>
   </div>
-  {SHORE}
 </div>
 
 <main class="part">
@@ -155,6 +156,7 @@ def page(*, title, canonical, description, hero, main, og=None, current="blog"):
 </footer>
 
 <script>
+{WATER_JS}
 document.addEventListener('click', function (ev) {{
   var b = ev.target.closest('[data-copy]'); if (!b) return;
   var text = b.getAttribute('data-copy'), label = b.textContent;
@@ -188,12 +190,14 @@ def post_parts(i):
     newer = posts[i - 1] if i > 0 else None
     older = posts[i + 1] if i + 1 < len(posts) else None
     body = read("posts", f"{p['slug']}.html")
-    hero = (f'<p class="where"><a href="/blog/">Blog</a><span aria-hidden="true">·</span>'
-            f'<time datetime="{p["date"]}">{fmt(p["date"])}</time></p>\n'
-            f'      <h1>{e(p["title"])}</h1>\n      <p class="dek"><strong>{e(p["dek"])}</strong>'
+    # Top band matches /about/ and /sea-suite/ (Ani, 16 Nov); the post's own heading opens the article column.
+    hero = '<p class="where">SeaSand</p>\n      <p class="title">Blog</p>'
+    head = (f'<header class="post-head">\n        <p class="date"><time datetime="{p["date"]}">{fmt(p["date"])}</time></p>\n'
+            f'        <h1>{e(p["title"])}</h1>\n        <p class="dek"><strong>{e(p["dek"])}</strong>'
             + (f' {e(p["dek1b"])}' if p.get("dek1b") else '') + '</p>')
     if p.get("dek2"):
-        hero += f'\n      <p class="dek2">{e(p["dek2"])}</p>'
+        head += f'\n        <p class="dek2">{e(p["dek2"])}</p>'
+    head += '\n      </header>'
     older_html = (f'<a href="/blog/{older["slug"]}/"><span class="k">&#8592; Older</span><span class="t">{e(older["title"])}</span></a>'
                   if older else '<span class="none">This is the first post.</span>')
     newer_html = (f'<a class="newer" href="/blog/{newer["slug"]}/"><span class="k">Newer &#8594;</span><span class="t">{e(newer["title"])}</span></a>'
@@ -203,6 +207,7 @@ def post_parts(i):
       {post_nav(p['slug'])}
     </div></div>
     <div class="main">
+      {head}
       <article class="prose">
 {body}
       </article>
