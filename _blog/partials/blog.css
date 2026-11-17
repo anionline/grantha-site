@@ -162,3 +162,14 @@ h1 { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(
 .postnav a:hover .t { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .postnav a[aria-current] { padding-left: 12px; box-shadow: inset 3px 0 0 var(--sea); }
 .postnav a[aria-current] .t { color: var(--link); }
+
+/* Sticky top bar (Ani, 16 Nov): same as home, the nav stays on screen while scrolling. */
+.bar { position: sticky; top: 0; z-index: 50; background: var(--sea); color: var(--foam); padding-top: env(safe-area-inset-top, 0px); box-shadow: 0 1px 0 rgba(251,248,242,.14); }
+.bar a { color: var(--foam); }
+.bar .top { padding-block: 18px; }
+@media (min-width: 760px) { .bar .top { padding-block: 22px; } }
+.bar + .sea .hero { padding-top: 40px; }
+@media (min-width: 760px) { .bar + .sea .hero { padding-top: 72px; } }
+@media (min-width: 960px) { .rail .stick { top: calc(env(safe-area-inset-top, 0px) + 112px); } }
+html { scroll-padding-top: 136px; }
+@media (min-width: 760px) { html { scroll-padding-top: 100px; } }
