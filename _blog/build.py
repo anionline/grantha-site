@@ -290,7 +290,7 @@ def build_feed():
 
 
 def build_sitemap():
-    urls = [f"{BASE}/", f"{BASE}/blog/", f"{BASE}/sea-suite/", f"{BASE}/about/"] + [url_of(p) for p in posts]
+    urls = [f"{BASE}/", f"{BASE}/blog/", f"{BASE}/sea-suite/"] + [url_of(p) for p in posts]
     body = "".join(f"\n  <url><loc>{u}</loc></url>" for u in urls)
     write("sitemap.xml", f'<?xml version="1.0" encoding="utf-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}\n</urlset>\n')
 
@@ -312,7 +312,7 @@ def sync_home_nav():
     # Home (Hiring), then the hand-built section pages (16 Nov: one section per page).
     sync_page_nav("index.html", home=True, current="home")
     sync_page_nav("sea-suite/index.html", current="sea-suite")
-    sync_page_nav("about/index.html", current="about")
+    # /about/ taken down (Ani, 17 Nov); restore from git (c010187) and re-add the nav entry in site.json.
 
 
 def clean_stale():
