@@ -116,7 +116,7 @@ def page(*, title, canonical, description, hero, main, og=None, current="blog"):
 {meta}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="alternate" type="application/rss+xml" title="SeaSand Blog" href="/blog/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="SeaSand Ship’s Log" href="/blog/feed.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;500&family=Noto+Sans+JP:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
 {CSS}</style>
@@ -177,7 +177,7 @@ def post_nav(current_slug):
         f"""<span class="date"><time datetime="{q['date']}">{fmt(q['date'])}</time></span>"""
         f"""<span class="t">{e(q['title'])}</span></a></li>"""
         for q in posts)
-    return f"""<nav class="postnav" aria-label="Blog posts">
+    return f"""<nav class="postnav" aria-label="Ship’s Log posts">
         <p class="kicker">Posts</p>
         <ul>{items}
         </ul>
@@ -191,7 +191,7 @@ def post_parts(i):
     older = posts[i + 1] if i + 1 < len(posts) else None
     body = read("posts", f"{p['slug']}.html")
     # Top band matches /about/ and /sea-suite/ (Ani, 16 Nov); the post's own heading opens the article column.
-    hero = '<p class="where">SeaSand</p>\n      <p class="title">Blog</p>'
+    hero = '<p class="where">SeaSand</p>\n      <p class="title">Ship’s Log</p>'
     head = (f'<header class="post-head">\n        <p class="date"><time datetime="{p["date"]}">{fmt(p["date"])}</time></p>\n'
             f'        <h1>{e(p["title"])}</h1>\n        <p class="dek"><strong>{e(p["dek"])}</strong>'
             + (f' {e(p["dek1b"])}' if p.get("dek1b") else '') + '</p>')
@@ -228,7 +228,7 @@ def build_index():
     p, hero, main = post_parts(0)
     image = f"{url_of(p)}{p['image']}" if p.get("image") else None
     write("blog/index.html", page(
-        title=f"{p['title']} · SeaSand Blog",
+        title=f"{p['title']} · SeaSand Ship’s Log",
         canonical=url_of(p),
         description=p.get("description", p["dek"]),
         hero=hero,
@@ -280,7 +280,7 @@ def build_feed():
     write("blog/feed.xml", f"""<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 <channel>
-  <title>SeaSand Blog</title>
+  <title>SeaSand Ship’s Log</title>
   <link>{BASE}/blog/</link>
   <description>Writing from SeaSand.</description>
   <language>en</language>{items}
