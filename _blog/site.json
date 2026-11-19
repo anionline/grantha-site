@@ -6,6 +6,6 @@
   "nav": [
     { "label": "Hiring",        "home": "#hiring",     "href": "/#hiring",    "section": "home" },
     { "label": "Ship’s Log",    "home": "/blog/",      "href": "/blog/",      "section": "blog" },
-    { "label": "The Sea Suite", "home": "/sea-suite/", "href": "/sea-suite/", "section": "sea-suite" }
+    { "label": "Sea Suite",     "home": "/sea-suite/", "href": "/sea-suite/", "section": "sea-suite" }
   ]
 }
