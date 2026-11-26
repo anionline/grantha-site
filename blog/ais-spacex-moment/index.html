@@ -211,6 +211,24 @@ html { scroll-padding-top: 136px; }
 .post-head .dek2 { color: var(--text-2); }
 /* Phones: the post comes first, the list of posts after it. From 960px the list is the left nav. */
 @media (max-width: 959px) { .part > .wrap > .main { order: -1; } }
+
+/* ---------- Ship's Log cover in the moving water (Designer v1126_1) ---------- */
+.sea-cover .hero.hero-sub { padding-block: 40px 0; gap: 18px; }
+@media (min-width: 760px) { .sea-cover .hero.hero-sub { padding-block: 64px 0; } }
+.cover { position: relative; margin: 0; aspect-ratio: 1600 / 840; max-width: 100%; overflow: hidden; isolation: isolate;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 16%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 16%, #000 86%, transparent 100%); mask-composite: intersect; }
+.cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* the same water, laid over the painting: it keeps moving across the light so image and band read as one sea */
+.cover .fx { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.cover .cover-water { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; mix-blend-mode: screen; opacity: .12; pointer-events: none; }
+.cover-type { position: absolute; z-index: 2; left: 6%; top: 50%; transform: translateY(-50%); width: 44%; display: none; gap: 22px; color: var(--foam); }
+.cover[data-dir="c"] .cover-type { display: grid; }
+.ct-title { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(22px, 3.6vw, 52px); line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; }
+.ct-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-family: var(--mono); font-size: clamp(9px, 1.1vw, 15px); color: #ead9bb; }
+.ct-list i { font-style: normal; opacity: .7; }
+.ct-list .g { color: #e9c77f; }
+.sea-cover { padding-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -245,6 +263,7 @@ html { scroll-padding-top: 136px; }
       <nav class="postnav" aria-label="Ship’s Log posts">
         <p class="kicker">Posts</p>
         <ul>
+          <li><a href="/blog/new-ideas-new-names/"><span class="date"><time datetime="2026-11-25">Nov 25, 2026</time></span><span class="t">New ideas, new names, old references</span></a></li>
           <li><a href="/blog/ais-spacex-moment/" aria-current="page"><span class="date"><time datetime="2026-11-15">Nov 15, 2026</time></span><span class="t">AI&#x27;s SpaceX moment</span></a></li>
           <li><a href="/blog/why-seasand/"><span class="date"><time datetime="2026-11-12">Nov 12, 2026</time></span><span class="t">Why SeaSand Exists</span></a></li>
         </ul>
@@ -305,7 +324,7 @@ html { scroll-padding-top: 136px; }
         </div>
         <nav class="pn" aria-label="Older and newer posts">
           <a href="/blog/why-seasand/"><span class="k">&#8592; Older</span><span class="t">Why SeaSand Exists</span></a>
-          <span class="none newer">This is the newest post.</span>
+          <a class="newer" href="/blog/new-ideas-new-names/"><span class="k">Newer &#8594;</span><span class="t">New ideas, new names, old references</span></a>
         </nav>
       </div>
     </div>
@@ -379,5 +398,6 @@ document.addEventListener('click', function (ev) {
   try { navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); }); } catch (err) { done(false); }
 });
 </script>
+
 </body>
 </html>

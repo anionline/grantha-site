@@ -1,5 +1,17 @@
 [
   {
+    "slug": "new-ideas-new-names",
+    "title": "New ideas, new names, old references",
+    "date": "2026-11-25",
+    "author": "Ani Chaudhuri",
+    "role": "Founder",
+    "dek": "Every founder who builds something genuinely new meets the same problem on the first day they try to explain it. You need a name.",
+    "description": "Every founder who builds something genuinely new meets the same problem on the first day they try to explain it. You need a name.",
+    "image": "og.jpg",
+    "cover": "cover.jpg",
+    "published": true
+  },
+  {
     "slug": "ais-spacex-moment",
     "title": "AI's SpaceX moment",
     "date": "2026-11-15",

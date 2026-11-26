@@ -47,6 +47,7 @@ LOCKUP_SEA = read("partials", "lockup-sea.svg")
 LOCKUP_FOOT = read("partials", "lockup-foot.svg")
 SHORE = read("partials", "shore.svg")  # no longer used on blog pages (16 Nov)
 WATER_JS = read("partials", "water.js")
+COVER_FX_JS = read("partials", "cover-fx.js")  # moving light on a post cover (Designer, 25 Nov)
 
 posts = [p for p in json.loads(read("posts.json")) if p.get("published", True)]
 posts.sort(key=lambda p: p["date"], reverse=True)          # newest first
@@ -86,7 +87,7 @@ def share(p, cls=""):
         </div>"""
 
 
-def page(*, title, canonical, description, hero, main, og=None, current="blog"):
+def page(*, title, canonical, description, hero, main, og=None, current="blog", band="", extra_js=""):
     og = og or {}
     meta = [
         f'<link rel="canonical" href="{e(canonical)}">',
@@ -135,7 +136,7 @@ def page(*, title, canonical, description, hero, main, og=None, current="blog"):
     </header>
   </div>
 </div>
-<div class="sea sea-sub">
+<div class="sea sea-sub{band}">
   <canvas class="water" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero hero-sub">
@@ -164,6 +165,7 @@ document.addEventListener('click', function (ev) {{
   try {{ navigator.clipboard.writeText(text).then(function () {{ done(true); }}, function () {{ done(false); }}); }} catch (err) {{ done(false); }}
 }});
 </script>
+{extra_js}
 </body>
 </html>
 """
@@ -192,6 +194,13 @@ def post_parts(i):
     body = read("posts", f"{p['slug']}.html")
     # Top band matches /about/ and /sea-suite/ (Ani, 16 Nov); the post's own heading opens the article column.
     hero = '<p class="where">SeaSand</p>\n      <p class="title">Ship’s Log</p>'
+    band, extra_js = "", ""
+    if p.get("cover"):
+        # Post with a cover: the painting sits in the top band, feathered into the moving water (Designer v1126_1).
+        hero = (f'<p class="where">Ship’s Log</p>\n      <figure class="cover" data-dir="a">'
+                f'<img src="/blog/{p["slug"]}/{p["cover"]}" alt="" width="1600" height="840">'
+                '<canvas class="fx" aria-hidden="true"></canvas><canvas class="water cover-water" aria-hidden="true"></canvas></figure>')
+        band, extra_js = " sea-cover", f"<script>\n{COVER_FX_JS}</script>"
     head = (f'<header class="post-head">\n        <p class="date"><time datetime="{p["date"]}">{fmt(p["date"])}</time></p>\n'
             f'        <h1>{e(p["title"])}</h1>\n        <p class="dek"><strong>{e(p["dek"])}</strong>'
             + (f' {e(p["dek1b"])}' if p.get("dek1b") else '') + '</p>')
@@ -220,12 +229,12 @@ def post_parts(i):
       </div>
     </div>
   </div>"""
-    return p, hero, main
+    return p, hero, main, band, extra_js
 
 
 def build_index():
     # /blog/ opens on the newest post, with every post in the left nav (Ani, 16 Nov).
-    p, hero, main = post_parts(0)
+    p, hero, main, band, extra_js = post_parts(0)
     image = f"{url_of(p)}{p['image']}" if p.get("image") else None
     write("blog/index.html", page(
         title=f"{p['title']} · SeaSand Ship’s Log",
@@ -234,11 +243,12 @@ def build_index():
         hero=hero,
         main=main,
         og={"type": "article", "title": p["title"], "image": image, "published": p["date"]},
+        band=band, extra_js=extra_js,
     ))
 
 
 def build_post(i):
-    p, hero, main = post_parts(i)
+    p, hero, main, band, extra_js = post_parts(i)
     image = f"{url_of(p)}{p['image']}" if p.get("image") else None
     write(f"blog/{p['slug']}/index.html", page(
         title=f"{p['title']} · SeaSand",
@@ -247,6 +257,7 @@ def build_post(i):
         hero=hero,
         main=main,
         og={"type": "article", "title": p["title"], "image": image, "published": p["date"]},
+        band=band, extra_js=extra_js,
     ))
 
 

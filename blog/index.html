@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AI&#x27;s SpaceX moment · SeaSand Ship’s Log</title>
-<link rel="canonical" href="https://seasand.ai/blog/ais-spacex-moment/">
-<meta name="description" content="Reusable rockets changed the economics of space. AI still flies single-use. It hasn&#x27;t had its SpaceX moment yet.">
+<title>New ideas, new names, old references · SeaSand Ship’s Log</title>
+<link rel="canonical" href="https://seasand.ai/blog/new-ideas-new-names/">
+<meta name="description" content="Every founder who builds something genuinely new meets the same problem on the first day they try to explain it. You need a name.">
 <meta property="og:site_name" content="SeaSand">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AI&#x27;s SpaceX moment">
-<meta property="og:description" content="Reusable rockets changed the economics of space. AI still flies single-use. It hasn&#x27;t had its SpaceX moment yet.">
-<meta property="og:url" content="https://seasand.ai/blog/ais-spacex-moment/">
-<meta property="og:image" content="https://seasand.ai/blog/ais-spacex-moment/og.png">
+<meta property="og:title" content="New ideas, new names, old references">
+<meta property="og:description" content="Every founder who builds something genuinely new meets the same problem on the first day they try to explain it. You need a name.">
+<meta property="og:url" content="https://seasand.ai/blog/new-ideas-new-names/">
+<meta property="og:image" content="https://seasand.ai/blog/new-ideas-new-names/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="article:published_time" content="2026-11-15">
+<meta property="article:published_time" content="2026-11-25">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="SeaSand Ship’s Log" href="/blog/feed.xml">
@@ -211,6 +211,24 @@ html { scroll-padding-top: 136px; }
 .post-head .dek2 { color: var(--text-2); }
 /* Phones: the post comes first, the list of posts after it. From 960px the list is the left nav. */
 @media (max-width: 959px) { .part > .wrap > .main { order: -1; } }
+
+/* ---------- Ship's Log cover in the moving water (Designer v1126_1) ---------- */
+.sea-cover .hero.hero-sub { padding-block: 40px 0; gap: 18px; }
+@media (min-width: 760px) { .sea-cover .hero.hero-sub { padding-block: 64px 0; } }
+.cover { position: relative; margin: 0; aspect-ratio: 1600 / 840; max-width: 100%; overflow: hidden; isolation: isolate;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 16%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 16%, #000 86%, transparent 100%); mask-composite: intersect; }
+.cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* the same water, laid over the painting: it keeps moving across the light so image and band read as one sea */
+.cover .fx { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.cover .cover-water { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; mix-blend-mode: screen; opacity: .12; pointer-events: none; }
+.cover-type { position: absolute; z-index: 2; left: 6%; top: 50%; transform: translateY(-50%); width: 44%; display: none; gap: 22px; color: var(--foam); }
+.cover[data-dir="c"] .cover-type { display: grid; }
+.ct-title { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(22px, 3.6vw, 52px); line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; }
+.ct-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-family: var(--mono); font-size: clamp(9px, 1.1vw, 15px); color: #ead9bb; }
+.ct-list i { font-style: normal; opacity: .7; }
+.ct-list .g { color: #e9c77f; }
+.sea-cover { padding-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -229,12 +247,12 @@ html { scroll-padding-top: 136px; }
     </header>
   </div>
 </div>
-<div class="sea sea-sub">
+<div class="sea sea-sub sea-cover">
   <canvas class="water" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero hero-sub">
-      <p class="where">SeaSand</p>
-      <p class="title">Ship’s Log</p>
+      <p class="where">Ship’s Log</p>
+      <figure class="cover" data-dir="a"><img src="/blog/new-ideas-new-names/cover.jpg" alt="" width="1600" height="840"><canvas class="fx" aria-hidden="true"></canvas><canvas class="water cover-water" aria-hidden="true"></canvas></figure>
     </div>
   </div>
 </div>
@@ -245,66 +263,70 @@ html { scroll-padding-top: 136px; }
       <nav class="postnav" aria-label="Ship’s Log posts">
         <p class="kicker">Posts</p>
         <ul>
-          <li><a href="/blog/ais-spacex-moment/" aria-current="page"><span class="date"><time datetime="2026-11-15">Nov 15, 2026</time></span><span class="t">AI&#x27;s SpaceX moment</span></a></li>
+          <li><a href="/blog/new-ideas-new-names/" aria-current="page"><span class="date"><time datetime="2026-11-25">Nov 25, 2026</time></span><span class="t">New ideas, new names, old references</span></a></li>
+          <li><a href="/blog/ais-spacex-moment/"><span class="date"><time datetime="2026-11-15">Nov 15, 2026</time></span><span class="t">AI&#x27;s SpaceX moment</span></a></li>
           <li><a href="/blog/why-seasand/"><span class="date"><time datetime="2026-11-12">Nov 12, 2026</time></span><span class="t">Why SeaSand Exists</span></a></li>
         </ul>
       </nav>
     </div></div>
     <div class="main">
       <header class="post-head">
-        <p class="date"><time datetime="2026-11-15">Nov 15, 2026</time></p>
-        <h1>AI&#x27;s SpaceX moment</h1>
-        <p class="dek"><strong>Reusable rockets changed the economics of space. AI still flies single-use. It hasn&#x27;t had its SpaceX moment yet.</strong></p>
+        <p class="date"><time datetime="2026-11-25">Nov 25, 2026</time></p>
+        <h1>New ideas, new names, old references</h1>
+        <p class="dek"><strong>Every founder who builds something genuinely new meets the same problem on the first day they try to explain it. You need a name.</strong></p>
       </header>
       <article class="prose">
       <section>
-        <p>If you grew up on Herg&eacute;&rsquo;s Tintin, you know the two best books in the series. <em>Destination Moon</em> and <em>Explorers on the Moon</em>, 1953 and 1954. A red-and-white checked rocket stands on its tail on the Moon, and then it brings everyone home.</p>
-        <p>More than sixty years later, Elon Musk was asked why his new spaceship looked so much like it. His answer: &ldquo;If in doubt, go with Tintin.&rdquo;</p>
+        <p>Name it after the closest thing people already know, and they will hear the old thing. Give it a word nobody has heard before, and they won&rsquo;t hear anything at all. I&rsquo;ve built companies in documents for twenty years, and I&rsquo;m in the middle of this problem again right now. So this post is about the dilemma itself, and how other people got out of it.</p>
       </section>
       <section>
-        <h2>Replay is the point.</h2>
-        <p>SpaceX did not build the first reusable rocket. The Space Shuttle flew again and again for thirty years. It still cost about $28,000 to put a pound in orbit.</p>
-        <p>What SpaceX built was a rocket you can replay. The booster lands, gets checked, refuels and flies again. One Falcon 9 booster has now flown 37 times. On Falcon 9, a pound in orbit costs about $1,200. On Falcon Heavy, about $640.</p>
-        <figure class="video">
-          <iframe src="https://www.youtube-nocookie.com/embed/GrP3jHuLQ9o?start=3&amp;end=13&amp;mute=1&amp;playsinline=1&amp;rel=0" title="A Falcon 9 booster lands" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
-          <figcaption>A Falcon 9 booster lands. Source: SpaceX.</figcaption>
-        </figure>
-        <p>That changed the structure of the whole industry. In 2025 SpaceX flew 165 Falcon 9 missions, one every two or three days. It put more than 3,000 Starlink satellites in orbit, about eight a day.</p>
-        <p>Starlink is just the first product we can see. Ideas that were too expensive to try are now on real drawing boards: data centers in orbit, mining in space, factories that need no gravity.</p>
-        <blockquote><p>When something becomes replayable, the ecosystem around it changes shape.</p></blockquote>
+        <h2>The closest old name is a trap</h2>
+        <p>The first cars were called horseless carriages. The name told you exactly what the thing was, and exactly how to judge it: as a carriage, minus the horse. People asked whether it was as reliable as a horse, and missed that it would rebuild cities.</p>
+        <p>Radio started life as the wireless: a telegraph without the wire. The name made it sound like a cheaper telegram, and hid that it was something new, one voice reaching millions at once.</p>
+        <p>Old names are comfortable because they come with a mental model. That&rsquo;s also the problem. The reader takes the old model, ticks the boxes it already knows, and files your idea next to the thing it replaces.</p>
+        <p>It happens in our own field too. The computer &ldquo;file&rdquo; was named after the paper folder, and the file system after the filing cabinet. That was a gift in its day: everyone understood it at once. Fifty years later, the metaphor still decides how we store knowledge, even now that machines do more and more of the reading.</p>
       </section>
       <section>
-        <h2>AI today is pre-SpaceX rocketry</h2>
-        <p>What does that have to do with AI?</p>
-        <p>Here is what happens when you ask an AI assistant a question. It searches what it can reach. It pulls back what looks relevant and reads it into its working memory, page by page. It works out what it says, decides which parts answer you, and writes a reply.</p>
-        <p>Every page read and every step of thought costs tokens.</p>
-        <p>Now ask the same question tomorrow. Or have a colleague ask it. The whole flight runs again: search, read, reason, write. What the AI worked out the first time is not there for the next flight. It is a single-use rocket.</p>
+        <h2>A brand-new word is a trap too</h2>
+        <p>So you go the other way. You invent a word, clean and unclaimed, with nothing attached to it.</p>
+        <p>Now you have the opposite problem. A new word is an empty box. Nobody knows what goes in it, and every reader has to be taught, one at a time. Big companies can afford years of that teaching. A startup gets one sentence, maybe two, before the listener decides whether to keep listening.</p>
+        <p>So the founder is stuck between a name that is understood and wrong, and a name that is right and not understood.</p>
       </section>
       <section>
-        <h2>Single-use</h2>
-        <p>Every unnecessary part on a rocket is weight it has to lift. Every unnecessary step in AI is tokens someone has to pay for. Today&rsquo;s AI reads whole documents to find one paragraph. It reads the same documents again for the next question, and again for the one after that.</p>
-        <p>Ask Copilot, ChatGPT and Claude the same question and you may get three different answers. Each one searches differently, finds different documents, and weighs them differently. Ask the same AI twice and the answer can change, because each answer is written fresh.</p>
-        <p>The answer is delivered and the work behind it is thrown away. The company paid for all that reading and keeps none of it. Tomorrow it pays again.</p>
+        <h2>The way through: borrow a reference, not a category</h2>
+        <p>The names that worked did something subtle. They borrowed an old picture without borrowing the old category.</p>
+        <p>The electronic spreadsheet took its name from the accountant&rsquo;s paper sheet, ruled into rows and columns. Everyone could picture it. But nobody mistook it for paper, because the picture came with something paper could never do: change one number and watch every other one move.</p>
+        <p>The desktop, the window and the folder on your screen worked the same way. Each one borrowed an object from the office so you&rsquo;d know where to start, then quietly did things no office object could.</p>
+        <p>So the trick isn&rsquo;t old name or new name. It&rsquo;s a reference that teaches. Pick an image people already hold, and choose one that carries the new idea inside it, so the more they think about the picture, the closer they get to what you&rsquo;re building.</p>
       </section>
       <section>
-        <h2>The question nobody asked</h2>
-        <p>Rocketry didn&rsquo;t change because someone built a better throwaway rocket. It changed because someone asked why we throw rockets away.</p>
-        <p>AI is at that moment now. Every answer is a rocket built, flown once and dropped in the sea.</p>
-        <p>We&rsquo;re asking that question from first principles. The work an AI does once should land where every AI can find it, and fly again.</p>
+        <h2>Our turn: sand, oysters and pearls</h2>
+        <p>We&rsquo;re in this exact spot at SeaSand. The closest old name for what we&rsquo;re building is one everyone knows, and it arrives with fifty years of assumptions. A brand-new word would be all ours, and would mean nothing to anyone.</p>
+        <p>So we went to the sea.</p>
+        <p>Every company&rsquo;s knowledge starts as sea sand: countless grains, scattered, mostly overlooked. A grain of sand on its own isn&rsquo;t worth much. But put one inside an oyster and give it time, and layer by layer it becomes a pearl.</p>
+        <p>That&rsquo;s the picture we chose. We call the way we build the <strong>Oyster architecture</strong>, and what we hand to AI, <strong>Pearls</strong>. Nobody will mistake an oyster for a filing cabinet. And the longer you sit with the picture (a raw grain, patient layering, something of lasting value at the end), the closer you get to what we&rsquo;re doing.</p>
+        <p>We&rsquo;ll admit to the smile, too. It&rsquo;s hard to be called SeaSand and not end up with pearls.</p>
       </section>
-      <div class="statement" role="note"><p class="long">SpaceX had its moment the day a booster came home, and then flew again and again and again. AI hasn&rsquo;t had that moment yet. SeaSand exists to bring it.</p></div>
-  <div class="sign"><span class="allway">All the way.</span><span class="by">Ani Chaudhuri, Founder</span></div>
+      <section>
+        <h2>We haven&rsquo;t solved this, and we&rsquo;d love your help</h2>
+        <p>This is the messaging problem we&rsquo;re living with every day. We know the rule we want to follow: resist the closest old name, because it will be judged against the thing it replaces. Resist the empty new word too, because we don&rsquo;t have years to teach it. Look for a reference people already carry, one that points forward. Knowing the rule is the easy part. Living it, in one sentence, to a busy reader, is the hard part.</p>
+        <p>Oysters and Pearls are our first answer. We&rsquo;re sure there are better ones out there, and better ways to tell the story.</p>
+        <p>So come and hang out with us. In January we&rsquo;re hosting a product marketing brainstorm in the Bay Area, with pizza and wine, soda or water. If you love marketing and product, come argue about names with us and help a young company find its words. Write to <span class="addr-small">info@seasand.ai</span> and we&rsquo;ll send you the details. And please share this with friends or colleagues who&rsquo;d enjoy the fun.</p>
+        <p>Can&rsquo;t make it? Tell me on <a href="https://www.linkedin.com/in/anionline" target="_blank" rel="noopener">LinkedIn</a>: what&rsquo;s the best name you&rsquo;ve seen for a genuinely new idea, and the worst?</p>
+      </section>
+  <div class="sign"><span class="by">Ani Chaudhuri, Founder</span></div>
+      
 
       </article>
       <div class="post-end">
         <div class="share " aria-label="Share this post">
           <span class="lbl">Share</span>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fseasand.ai%2Fblog%2Fais-spacex-moment%2F" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fseasand.ai%2Fblog%2Fais-spacex-moment%2F" target="_blank" rel="noopener">Facebook</a>
-          <button type="button" data-copy="https://seasand.ai/blog/ais-spacex-moment/">Copy link</button>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fseasand.ai%2Fblog%2Fnew-ideas-new-names%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fseasand.ai%2Fblog%2Fnew-ideas-new-names%2F" target="_blank" rel="noopener">Facebook</a>
+          <button type="button" data-copy="https://seasand.ai/blog/new-ideas-new-names/">Copy link</button>
         </div>
         <nav class="pn" aria-label="Older and newer posts">
-          <a href="/blog/why-seasand/"><span class="k">&#8592; Older</span><span class="t">Why SeaSand Exists</span></a>
+          <a href="/blog/ais-spacex-moment/"><span class="k">&#8592; Older</span><span class="t">AI&#x27;s SpaceX moment</span></a>
           <span class="none newer">This is the newest post.</span>
         </nav>
       </div>
@@ -378,6 +400,167 @@ document.addEventListener('click', function (ev) {
   function done(ok) { b.textContent = ok ? 'Copied' : text; setTimeout(function () { b.textContent = label; }, 2000); }
   try { navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); }); } catch (err) { done(false); }
 });
+</script>
+<script>
+/* Ship's Log cover motion (Designer v1126_1, cover A), verbatim from the preview. */
+var GEO = {"pearl": [0.5628333333333333, 0.7147460317460318, 0.024166666666666666], "shell": [0.575, 0.8253968253968254, 0.26666666666666666], "floor": 0.6989163160324097}, SANDMASK = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAE7CAAAAAAkhaBpAAAGNUlEQVR4Ae3BgWHWdB6H8ec7weU2iBMQJ2g6gWUCXieQTgBMIE7Q3gTgBH2dgDgBcYM4wf+KgOIJWCQ/mvSezydIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFglQgSAWCVCBIBYJUIEgFgjZgZOQd88xby8QuBW3BONw76/iwZeLa9CswLTDPbFzQVhy+OeMTLBMsP8M8w7SwMUHb0Y0nw8g/s0ww/QpHmGduXdDGDMPJgc92hPkXmBY4cguCtqc/Oxk71nQEfgKmBZaJekHbNPYnB+osE9emX7m2TPxmmVhN0Gb1j846bssy8XHdwEcEbVj36NCxS0F/1Q3TwkacPRg79ifoNyN0A9zr6Hvm8+dsyPDdgb0JdfqeV4aO39zreGvkRpaJP8y/8NaRt5aJTzd0vDJy7V4HjPzJcn7JxvTfHTp2JXy+oePa0HHthFdGbsWRj+h7bubpk4Xt6S7O2JOMXJtnPq7vea3veeVfA68MHXfNcjqxTeOzjv1IQ++Y7s9s1fcP2Y809Ifl65nNuhrZjzT0u+V0Yru+f8h+pKG3ltOJLXsxsBtp6I3l/JJNuxrZjTT0xvlTtu3xI3YjDb3x74VtG16wG2noteMpW3dxYC/S0GvHUzbvamQn0tBr81dsXv+SnUhDb3w9sXmNnUhDb1x+y+Y1diINvbF8PbNxhwt2Ig29NZ0ubNvLnp1IQ7+bThe27OwZe5GG/jCdLmzYxYG9SEPvmE4XNqt/yW6koXfN9ye26vEjdiMN/cnyw2O2qXvZsRtp6H9M50c2qPv+wH6kob84PjmyOVcjO5KG3uP+czbm4sCepKH3WL5a2JLuamBX0tD7PL/Pllwc2Jc09F7nT9mO8YqdSUPv9+0lW9G96NmZNPQB316yDcPFwN6koQ9YTie2oH/RsTtp6EOW+0duX3c1sD9p6MOePlm4ZcNVxw6loY+Yn1xyq8ZnHXuUhj5qOj9yey4O7FMa+htPz7kljx/07FQa+jvT6cIt6C9GdisN/a3p/syX1j86sGNp6AaeXM58Sd3DR+xaGrqRy/8c+WLGi559S0M3dPzx+cyX0F2csXdp6MaWJ08pNzw4dOxeGvoE8w+XC4WGB2c9d0Ea+jTPfzzOlOgePui5I9LQJ5uPP00T6xrGkzPujjT0z0zL9PPzhTWMw8nYcaekoc9w+eNx4bN04zdnHXdOGvo8yzT9dFz4J/qzk6HnTkpDKzjOv0wL88zNDF3fwzcDd1YaWtE8w/IzzDNvLRPvGoeToefOS0NfwjLxytDx/yENaX1pSOtLQ1pfGtL60pDWl4a0vjSk9aUhrS8NaX1pSOtLQ1pfGtL60pDWl4a0vjSk9aUhrS8NaX1pSOtLQ1pfGtL60pDWl4a0vjSk9aUhrS8NaX1pSOtLQ1pfGtL60pDWl4a0vjSk9aUhrS8NaX1pSOtLQ1pfGtL60pDWl4a0vjSk9aUhre+/wuc/7OIYENcAAAAASUVORK5CYII=";
+/* Ship's Log cover, alive: sun shafts sway, light shimmers on the sand, bubbles rise, the pearl glints.
+   Drawn over the still painting; holds still with reduced motion. */
+(function () {
+  var fig = document.querySelector('.cover'); if (!fig) return;
+  var cv = fig.querySelector('canvas.fx'), ctx = cv.getContext('2d');
+  var G = GEO;                                   /* pearl, shell, floor as fractions of the cover */
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var Wc = 0, Hc = 0, dpr = 1, t0 = performance.now(), raf = 0, visible = true;
+  /* sand mask, for the caustic shimmer */
+  var mask = new Image(); mask.src = SANDMASK;
+  var cw = 200, ch = 105;                         /* caustic field resolution */
+  var cc = document.createElement('canvas'); cc.width = cw; cc.height = ch; var cx2 = cc.getContext('2d');
+  var cimg = cx2.createImageData(cw, ch);
+  var mc = document.createElement('canvas'); mc.width = cw; mc.height = ch; var mx = mc.getContext('2d'); var mdata = null;
+  mask.onload = function () { mx.drawImage(mask, 0, 0, cw, ch); mdata = mx.getImageData(0, 0, cw, ch).data; };
+
+  function size() {
+    var r = fig.getBoundingClientRect(); dpr = Math.min(2, window.devicePixelRatio || 1);
+    Wc = Math.max(1, Math.round(r.width * dpr)); Hc = Math.max(1, Math.round(r.height * dpr));
+    cv.width = Wc; cv.height = Hc;
+  }
+
+  /* --- sun shafts from the surface --- */
+  var shafts = [];
+  for (var i = 0; i < 9; i++) shafts.push({ a: -0.62 + i * 0.15 + (Math.random() - 0.5) * 0.06, w: 0.018 + Math.random() * 0.03, sp: 0.12 + Math.random() * 0.2, ph: Math.random() * 6.28, k: 0.5 + Math.random() * 0.5 });
+  function drawShafts(t) {
+    var sx = 0.46 * Wc, sy = -0.55 * Hc, L = Hc * 1.9;
+    ctx.save(); ctx.globalCompositeOperation = 'screen';
+    try { ctx.filter = 'blur(' + Math.round(10 * dpr) + 'px)'; } catch (e) {}
+    shafts.forEach(function (s) {
+      var a = s.a + Math.sin(t * s.sp + s.ph) * 0.035;
+      var w = s.w * (0.8 + 0.2 * Math.sin(t * 0.7 + s.ph));
+      var flick = 0.55 + 0.45 * Math.sin(t * (0.6 + s.sp) + s.ph * 2);
+      var g = ctx.createLinearGradient(sx, sy, sx + Math.sin(a) * L, sy + Math.cos(a) * L);
+      g.addColorStop(0.25, 'rgba(255,240,205,' + (0.28 * s.k * flick).toFixed(3) + ')');
+      g.addColorStop(0.62, 'rgba(240,236,220,' + (0.12 * s.k * flick).toFixed(3) + ')');
+      g.addColorStop(0.92, 'rgba(240,236,220,0)');
+      ctx.fillStyle = g; ctx.beginPath();
+      ctx.moveTo(sx + Math.sin(a - w * 0.25) * L * 0.2, sy + Math.cos(a - w * 0.25) * L * 0.2);
+      ctx.lineTo(sx + Math.sin(a - w) * L, sy + Math.cos(a - w) * L);
+      ctx.lineTo(sx + Math.sin(a + w) * L, sy + Math.cos(a + w) * L);
+      ctx.lineTo(sx + Math.sin(a + w * 0.25) * L * 0.2, sy + Math.cos(a + w * 0.25) * L * 0.2);
+      ctx.closePath(); ctx.fill();
+    });
+    ctx.restore();
+  }
+
+  /* --- caustic shimmer on the sand floor, in perspective --- */
+  function caustic(px, py, t) {
+    var TAU = 6.28318, ix = px, iy = py, c = 1, inten = 0.005;
+    for (var n = 0; n < 4; n++) {
+      var tt = t * (1 - 3.5 / (n + 1));
+      var nx = px + Math.cos(tt - ix) + Math.sin(tt + iy), ny = py + Math.sin(tt - iy) + Math.cos(tt + ix);
+      ix = nx; iy = ny;
+      c += 1 / Math.sqrt(Math.pow(px / (Math.sin(ix + tt) / inten), 2) + Math.pow(py / (Math.cos(iy + tt) / inten), 2));
+    }
+    c /= 4; c = 1.17 - Math.pow(Math.abs(c), 1.4);
+    return Math.min(1, Math.pow(Math.abs(c), 8));
+  }
+  function drawCaustics(t) {
+    if (!mdata) return;
+    var d = cimg.data, fy = G.floor * ch, i = 0;
+    for (var y = 0; y < ch; y++) {
+      for (var x = 0; x < cw; x++, i += 4) {
+        var m = mdata[i] / 255;
+        if (m < 0.05 || y <= fy) { d[i + 3] = 0; continue; }
+        var below = (y - fy) * (1260 / ch) + 8, z = 260 / below;
+        var wx = (x / cw - 0.5) * z * 3.0, wz = z;
+        var px = ((wx * 0.55) % 1 + 1) % 1 * 6.28318 - 250, py = ((wz * 0.55 + t * 0.03) % 1 + 1) % 1 * 6.28318 - 250;
+        var v = caustic(px, py, t * 0.55) * Math.min(1, 1.4 - z * 0.12) * m;
+        d[i] = 255; d[i + 1] = 236; d[i + 2] = 196; d[i + 3] = Math.max(0, Math.min(255, v * 170));
+      }
+    }
+    cx2.putImageData(cimg, 0, 0);
+    ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(cc, 0, 0, Wc, Hc); ctx.restore();
+  }
+
+  /* --- bubbles: a thin stream from the shell, and a few drifting in the water --- */
+  var bubbles = [];
+  function spawn(fromShell) {
+    var s = G.shell;
+    var b = fromShell ? { x: s[0] + (Math.random() - 0.5) * s[2] * 0.5, y: s[1] - 0.06, r: 0.0025 + Math.random() * 0.004 }
+                      : { x: Math.random(), y: 0.75 + Math.random() * 0.25, r: 0.002 + Math.random() * 0.006 };
+    b.vy = 0.035 + b.r * 9 + Math.random() * 0.02; b.ph = Math.random() * 6.28; b.wob = 0.003 + Math.random() * 0.006; b.age = 0;
+    bubbles.push(b);
+  }
+  for (var j = 0; j < 14; j++) { spawn(Math.random() < 0.5); bubbles[j].y = Math.random(); }
+  function drawBubbles(dt, t) {
+    if (Math.random() < dt * 1.6) spawn(true);
+    if (Math.random() < dt * 0.9) spawn(false);
+    ctx.save();
+    bubbles = bubbles.filter(function (b) {
+      b.y -= b.vy * dt; b.age += dt;
+      var x = (b.x + Math.sin(t * 2.2 + b.ph) * b.wob) * Wc, y = b.y * Hc, r = b.r * Wc;
+      var fade = Math.min(1, b.age * 2) * Math.min(1, b.y / 0.15);
+      if (b.y < -0.05) return false;
+      var g = ctx.createRadialGradient(x, y, r * 0.2, x, y, r);
+      g.addColorStop(0, 'rgba(255,255,255,0.02)'); g.addColorStop(0.75, 'rgba(225,238,255,' + (0.16 * fade) + ')'); g.addColorStop(1, 'rgba(255,255,255,' + (0.55 * fade) + ')');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,' + (0.8 * fade) + ')'; ctx.beginPath(); ctx.arc(x - r * 0.35, y - r * 0.35, Math.max(0.6, r * 0.22), 0, 6.2832); ctx.fill();
+      return true;
+    });
+    ctx.restore();
+  }
+
+  /* --- motes drifting in the light --- */
+  var motes = [];
+  for (var k = 0; k < 70; k++) motes.push({ x: Math.random(), y: Math.random() * 0.85, r: 0.6 + Math.random() * 1.8, ph: Math.random() * 6.28, sp: 0.2 + Math.random() * 0.5 });
+  function drawMotes(t) {
+    ctx.save(); ctx.globalCompositeOperation = 'screen';
+    motes.forEach(function (m) {
+      var x = ((m.x + t * 0.004 * m.sp) % 1) * Wc, y = (m.y + Math.sin(t * m.sp + m.ph) * 0.01) * Hc;
+      var a = 0.25 + 0.35 * (0.5 + 0.5 * Math.sin(t * 1.7 * m.sp + m.ph));
+      ctx.fillStyle = 'rgba(255,244,220,' + a.toFixed(3) + ')'; ctx.beginPath(); ctx.arc(x, y, m.r * dpr, 0, 6.2832); ctx.fill();
+    });
+    ctx.restore();
+  }
+
+  /* --- the pearl's glint: lustre sweeping slowly over its face --- */
+  function drawPearl(t) {
+    var p = G.pearl, x = p[0] * Wc, y = p[1] * Hc, R = p[2] * Wc;
+    ctx.save(); ctx.beginPath(); ctx.arc(x, y, R * 0.98, 0, 6.2832); ctx.clip();
+    ctx.globalCompositeOperation = 'screen';
+    var a = t * 0.5, hx = x + Math.cos(a) * R * 0.35 - R * 0.15, hy = y + Math.sin(a * 0.8) * R * 0.25 - R * 0.25;
+    var g = ctx.createRadialGradient(hx, hy, 0, hx, hy, R * 0.75);
+    var pulse = 0.18 + 0.12 * (0.5 + 0.5 * Math.sin(t * 1.3));
+    g.addColorStop(0, 'rgba(255,246,232,' + pulse.toFixed(3) + ')'); g.addColorStop(1, 'rgba(255,246,232,0)');
+    ctx.fillStyle = g; ctx.fillRect(x - R, y - R, R * 2, R * 2);
+    var tint = ctx.createLinearGradient(x - R, y - R, x + R, y + R);
+    var s = 0.5 + 0.5 * Math.sin(t * 0.6);
+    tint.addColorStop(0, 'rgba(255,200,210,' + (0.05 + 0.05 * s) + ')'); tint.addColorStop(1, 'rgba(190,230,215,' + (0.05 + 0.05 * (1 - s)) + ')');
+    ctx.fillStyle = tint; ctx.fillRect(x - R, y - R, R * 2, R * 2);
+    ctx.restore();
+    /* soft halo breathing around it */
+    ctx.save(); ctx.globalCompositeOperation = 'screen';
+    var h = ctx.createRadialGradient(x, y, R, x, y, R * 2.6);
+    h.addColorStop(0, 'rgba(255,236,200,' + (0.10 + 0.06 * Math.sin(t * 1.1)).toFixed(3) + ')'); h.addColorStop(1, 'rgba(255,236,200,0)');
+    ctx.fillStyle = h; ctx.fillRect(x - R * 3, y - R * 3, R * 6, R * 6); ctx.restore();
+  }
+
+  var last = t0;
+  function frame(now) {
+    var t = (now - t0) / 1000, dt = Math.min(0.05, (now - last) / 1000); last = now;
+    ctx.clearRect(0, 0, Wc, Hc);
+    drawShafts(t); drawCaustics(t); drawMotes(t); drawPearl(t); drawBubbles(dt, t);
+  }
+  function loop(now) { frame(now); raf = (visible && !still) ? requestAnimationFrame(loop) : 0; }
+  size(); frame(t0 + 3000);
+  if (!still) {
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible && !raf) raf = requestAnimationFrame(loop); }).observe(fig);
+    document.addEventListener('visibilitychange', function () { visible = !document.hidden; if (visible && !raf) raf = requestAnimationFrame(loop); });
+    raf = requestAnimationFrame(loop);
+  } else { mask.addEventListener('load', function () { frame(t0 + 3000); }); }
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { size(); if (still) frame(performance.now()); }, 150); });
+})();
+
 </script>
 </body>
 </html>
