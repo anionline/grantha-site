@@ -200,7 +200,7 @@ def post_parts(i):
         hero = (f'<p class="where">Ship’s Log</p>\n      <figure class="cover" data-dir="a">'
                 f'<img src="/blog/{p["slug"]}/{p["cover"]}" alt="{e(p.get("cover_alt", ""))}" width="1600" height="840">'
                 '<canvas class="fx" aria-hidden="true"></canvas><canvas class="water cover-water" aria-hidden="true"></canvas></figure>')
-        band, extra_js = " sea-cover", f"<script>\n{COVER_FX_JS}</script>"
+        band, extra_js = " sea-cover", f"<script>\n{COVER_FX_JS}{read('fx', p['slug'] + '.js')}</script>"
     head = (f'<header class="post-head">\n        <p class="date"><time datetime="{p["date"]}">{fmt(p["date"])}</time></p>\n'
             f'        <h1>{e(p["title"])}</h1>\n        <p class="dek"><strong>{e(p["dek"])}</strong>'
             + (f' {e(p["dek1b"])}' if p.get("dek1b") else '') + '</p>')

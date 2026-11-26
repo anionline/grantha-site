@@ -20,8 +20,10 @@
     "role": "Founder",
     "dek": "Reusable rockets changed the economics of space. AI still flies single-use. It hasn't had its SpaceX moment yet.",
     "description": "Reusable rockets changed the economics of space. AI still flies single-use. It hasn't had its SpaceX moment yet.",
-    "image": "og.png",
-    "published": true
+    "image": "og-v1.jpg",
+    "published": true,
+    "cover": "cover-v1.jpg",
+    "cover_alt": "Seen from under the sea: a booster descends on its flame, touches down on a floating pad and stays there."
   },
   {
     "slug": "why-seasand",
@@ -33,7 +35,9 @@
     "dek1b": "The shift is here now.",
     "dek2": "You get the why and the how today. The what comes later.",
     "description": "The world needs people and machines to work as partners. SeaSand exists to build that.",
-    "image": "og.png",
-    "published": true
+    "image": "og-v1.jpg",
+    "published": true,
+    "cover": "cover-v1.jpg",
+    "cover_alt": "A school of silver fish swims an endless figure-eight through shafts of sea light above the sand."
   }
 ]
