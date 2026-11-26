@@ -198,7 +198,7 @@ def post_parts(i):
     if p.get("cover"):
         # Post with a cover: the painting sits in the top band, feathered into the moving water (Designer v1126_1).
         hero = (f'<p class="where">Ship’s Log</p>\n      <figure class="cover" data-dir="a">'
-                f'<img src="/blog/{p["slug"]}/{p["cover"]}" alt="" width="1600" height="840">'
+                f'<img src="/blog/{p["slug"]}/{p["cover"]}" alt="{e(p.get("cover_alt", ""))}" width="1600" height="840">'
                 '<canvas class="fx" aria-hidden="true"></canvas><canvas class="water cover-water" aria-hidden="true"></canvas></figure>')
         band, extra_js = " sea-cover", f"<script>\n{COVER_FX_JS}</script>"
     head = (f'<header class="post-head">\n        <p class="date"><time datetime="{p["date"]}">{fmt(p["date"])}</time></p>\n'
